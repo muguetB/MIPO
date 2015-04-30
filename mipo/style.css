@@ -1,0 +1,139 @@
+/* CSS Document */
+body{padding:0; margin:0; font:14px/20px Comic Sans MS,Georgia, Helvetica, sans-serif; color:#3D3C2C; font-weight:normal;}
+div, p, h1, h2, h3, ul, img{padding:0px; margin:0px;}
+ul{list-style-type:none;}
+
+/* TOP PANEL */
+#topPan{width:778px; height:120px; position:relative; margin:0 auto; padding:0;}
+#topPan img{width:110px; height:87px; display:block; padding:23px 0px 0 0px; }
+/* Menu Panel */
+#topPanMenu{width:520px; height:60px; display:block; position:absolute; top:0px; right:9px; margin:0; padding:0}
+#topPanMenu img{width:45px; height:40px; display:block; padding:15px 0 0 455px;} 
+#topPanMenu p{display:block; padding:0px 0 0 430px; font:10px/10px Comic Sans MS,Georgia,"Times New Roman", Times, serif; color: dodgerblue}
+#topPanMenu ul li{float:left; width:104px; display:block; text-align:center;}
+#topPanMenu ul li a{width:104px; height:35px; display:block; font:14px/14px Comic Sans MS,Georgia,"Times New Roman", Times, serif; color:#000000; text-decoration:none; margin:0; padding:10px 0 0 0; } //moje grupy
+.link1{color:#000000}
+.link1:hover{color: #e5e5e5; border-bottom: 2px solid #DCDAC2; padding-bottom: 20px}
+#topPanMenu ul li span{width:104px; height:35px; display:block; color:#2E4E00; text-decoration:none; padding:61px 0 0 0; line-height:14px;} //lista zakupów 
+
+/* /TOP PANEL */
+
+/* HEADER PANEL */
+#headerPan{width:778px; height:327px; position:relative; margin:0 auto; padding:0;}
+#headerPan h1{width:526px; height:256px; position:absolute; top:35px; right:0px; color:#fff; font-size:36px; line-height:18px; text-transform:uppercase; text-indent:-2000px;}
+#headerPanleft{ width:237px; height:374px; position:absolute; top:20%; left:20%;}
+
+#headerPan #ourblog{ float:left; width:237px; height:62px; position:relative; margin:0 auto; background:url(images/icon1-nor.gif) 0 0 no-repeat;}
+#headerPan #ourblog h2{width:90px; height:10px; background:#fff; display:block; position:absolute; left:0px; top:0px; margin:14px 0 5px 81px; font:16px/14px Georgia, "Times New Roman", Times, serif; color:#000000; z-index:1; text-transform:uppercase;}
+#headerPan #ourblog p{width:103px; height:10px; display:block; position:absolute; font:12px/14px Georgia,"Times New Roman", Times, serif; color:#000000; background:#fff; margin:34px 0 0 81px; z-index:1; }
+#headerPan #ourblog a{text-decoration:none; display:block; width:237px; height:62px;}
+
+
+#headerPan #possib{ float:left; width:237px; height:62px; position:relative; margin:13px 0 0 0; background:url(images/icon2-nor.gif) 0 0 no-repeat;}
+#headerPan #possib h2{width:90px; height:10px; background:#fff; display:block; position:absolute; left:0px; top:0px; margin:14px 0 5px 81px; font:16px/14px Georgia, "Times New Roman", Times, serif; color:#000000; z-index:1; text-transform:uppercase;}
+#headerPan #possib p{width:103px; height:10px; display:block; position:absolute; font:12px/14px "Trebuchet MS",Arial, Helvetica, sans-serif; color:#2E5000; background:#fff; margin:34px 0 0 81px; z-index:1; }
+#headerPan #possib a{text-decoration:none; display:block; width:237px; height:62px;}
+
+
+/* BODY PANEL */
+#bodyPan{width:900px; height:887px; position:relative; margin:0 auto; padding:0;}
+/*Left Panel */
+#leftPan{width:200px; height:300px; position:absolute; top:20%; margin:0;  padding:20px 15px 0 20px; border:2px solid #696969;  border-radius:20px; background:#fff; color:#000;}
+#leftmemberPan{width:237px; height:196px; position:relative; margin:0 auto; padding:0}
+#leftmemberPan h2{height:48px;  display:block; position:relative; padding:0 0 0 57px; margin:12px 0 20px 13px; font:16px/48px  Georgia,"Times New Roman", Times, serif; color:#5EA000; text-transform:uppercase;}
+#leftPan form{width:220px; height:108px; padding:0; margin:0 0 0 8px;}
+
+
+
+
+#headerPan #zmien{ float:left; width:200px; height:48px; position:relative; margin:13px 0 0 0; background:url(images/icon5-nor.gif) 0 0 no-repeat;}
+#headerPan #zmien h2{width:90px; height:10px; background:#fff; display:block; position:absolute; left:0px; top:0px; margin:14px 0 5px 81px; font:16px/14px Georgia, "Times New Roman", Times, serif; color:#000000; z-index:1; text-transform:uppercase;}
+#headerPan #zmien p{width:103px; height:10px; display:block; position:absolute; font:10px/12px Comic Sans MS,"Trebuchet MS",Arial, Helvetica, sans-serif; color:#2E5000; background:#fff; margin:34px 0 0 81px; z-index:1; }
+#headerPan #zmien a{text-decoration:none; display:block; width:237px; height:62px;}
+
+
+#headerPan #usun{ float:left; width:200px; height:48px; position:relative; margin:13px 0 0 0; background:url(images/icon6-nor.gif) 0 0 no-repeat;}
+#headerPan #usun h2{width:90px; height:10px; background:#fff; display:block; position:absolute; left:0px; top:0px; margin:14px 0 5px 81px; font:16px/14px Georgia, "Times New Roman", Times, serif; color:#000000; z-index:1; text-transform:uppercase;}
+#headerPan #usun p{width:103px; height:10px; display:block; position:absolute; font:10px/12px Comic Sans MS,"Trebuchet MS",Arial, Helvetica, sans-serif; color:#2E5000; background:#fff; margin:34px 0 0 81px; z-index:1; }
+#headerPan #usun a{text-decoration:none; display:block; width:237px; height:62px;}
+
+
+/*/Left Panel */
+/*Right Panel */
+#rightPan{width:504px; height:575px; position:absolute; left:500px; top:160px; right:10px; font-style: bold; }
+#rightbodyPan{width:484px; height:555px; position:absolute; top:10px; left:10px; color:#3D3C2C;}
+#zmienDane{width:550px; height:400px; display:block;  position:relative; margin-left:auto; margin-right:auto;   padding:0; background:#fff; color:#000;}
+#zmiana_formularz{width:550px; position:relative; top:10%; height:108px; }
+#zmiana_formularz label{width:150px; position:relative; display:block; font:16px/12px Comic Sans MS,"Trebuchet MS",Arial; float:left; margin-top:10px; }
+#naglowek{width:150px; position:relative; display:block; font:16px/12px Comic Sans MS,"Trebuchet MS",Arial; color:#82B3AE; float:left; margin-top:5%; }
+.inputs{
+    position:relative; 
+    display:block;
+    width:130px; 
+    height:16px;  
+    margin:10px 0 0px 0px;
+    
+}
+#zapisz_zmiany_btn{float:left; display:block; width:190px; height:30px; margin-left:10%; margin-top:5%; background-color:#5EA000; color:white}
+
+
+
+/* /BODY PANEL */
+#rightPan{width:504px; height:510px; position:absolute; left:570px; top:126px; right:10px; border:1px solid #DCDAC2; color:#3D3C2C;}
+#rightPan2{width:504px; height:510px; position:absolute; left:570px; top:126px; right:10px; color:#3D3C2C;}
+#rightbodyPan{width:484px; height:555px; position:absolute; top:10px; left:10px; color:#3D3C2C;}
+#grupa{position:relative;  float:left; display:block; margin-top:5%; margin-left:10%}
+#ulubione_img{position:relative; display:block; margin-top:40%;}
+#edytuj_btn{display:block; position:relative; width:27px; height:21px; float:right; margin-left:10%; background-image:url(edytuj.png);}
+
+
+/*DODAWANIE GRUPY*/
+#submit_nowa_grupa{float:left; display:block; margin-right:auto; margin-left: 30%; margin-top: 5% }
+#anuluj_btn{float:left; display:block; margin-right:auto;margin-top: 5%  }
+.grupa_class{
+    float:left;
+    display:block; 
+    position:relative;
+    margin-top:5%;
+}
+.buttons{
+    color:white;
+    font-style: bold;
+    font: Comic Sans MS;
+    background-color:#a0b7b0;
+    
+}
+#output{float:left;display:block;  margin-top:5%; margin-left:10%}
+#chosen_pic{float:left;display:block; margin-top: 5%; margin-left:10%}
+
+/*DODAWANIE KONTAKTU*/
+#submit_nowy_kontakt{float:left; display:block; margin-right:auto; margin-left: 30%; margin-top: 5% }
+#anuluj_btn{float:left; display:block; margin-right:auto;margin-top: 5%  }
+#dodaj_czlonkow{float:left; display:block; margin-right:auto;margin-top: 5% }
+#usun_czlonkow{float:left; display:block; margin-right:auto;margin-top: 5% }
+.grupa_class{
+    float:left;
+    display:block; 
+    position:relative;
+    margin-top:5%;
+}
+.buttons{
+    float:left;
+    display:block; 
+    margin-top:10%;
+    color:white;
+    font-style: bold;
+    font: Comic Sans MS;
+    background-color:#a0b7b0;
+    
+}
+#output{float:left;display:block;  margin-top:5%; margin-left:10%}
+#chosen_pic_contact{float:left;display:block; margin-top: 5%; margin-left:10%}
+
+/*FOOTER*/
+/*
+footer{width: 778px; height: 200px; float: left; background-image: url(images/dol.png); background-repeat: no-repeat; margin-top: 150px}
+.twitter{padding-left: 520px; padding-right: 610px}
+.facebook{padding-left: 610px; padding-right: 520px}
+.dogory{width: 300px; height: 60px; border-radius: 7px; background-color: #000000; border-color: #000000; font-family: Open Sans; color: #fefefe; font-size: 12px; font-weight: 400; line-height: 18px;}
+*/

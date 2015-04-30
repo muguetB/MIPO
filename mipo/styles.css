@@ -1,0 +1,84 @@
+body{padding:0; margin:0;  font:14px/20px Comic Sans MS, Arial, Helvetica, sans-serif; font-weight:normal;}
+div, p, h1, h2, h3, ul, img{padding:0px; margin:0px;}
+ul{list-style-type:none;}
+
+/* HEADER PANEL */
+img.center{display: block; margin-left: auto; margin-right: auto;}
+
+
+/* BODY PANEL */
+#bodyPan{width:778px; position:relative; margin:auto; padding:0;}
+#leftPan{width:239px; position:absolute; top:0px; left:8px; margin:0; padding:0px;}
+#leftmemberPan{width:237px; height:240px; position:relative; margin:0, auto; padding:0; border:2px solid #696969; background:#fff; color:#000;}
+#leftmemberPan h2{height:48px; display:block; position:relative; margin-left:auto; margin-right:auto;padding:0 35px 0 35px;  font:16px/48px  Comic Sans MS,Georgia,"Times New Roman", Times, serif; text-transform:uppercase;}
+#leftPan form{width:220px; height:108px; background:#EBE9D7; padding:0; margin:0 0 0 8px; color:#333227;}
+#leftPan form label{width:72px; display:block; float:left; padding:14px 15px 0 16px; }
+.logowanie_input{float:left; display:block; width:101px; height:16px; margin:14px 0 9px 0}
+#zaloguj_btn{
+    float:left; display:block; width:170px; height:30px; margin-left: 10%; margin-top:10%; background-color:#5EA000; color:white
+}
+
+#leftPan ul{ display:block; float:right; width:150px; height:327px;}
+#leftPan ul li a{text-decoration:underline; color:#3D3C2C; background:#FCFAE6;}
+#leftPan ul li a:hover{text-decoration:none;}
+
+.linki{float:left; color:cornflowerblue; font-size:12px; margin-top:10px; margin-left:5px}
+
+/*JOIN US PANEL*/
+#joinUs{width:237px; height:240px; display:block; position:relative; margin-left:500px;  padding:0; border:2px solid #696969; background:#fff; color:#000;}
+#joinUs h2{height:48px; display:block; position:relative; padding:0 45px 0 45px;  font:16px/48px  Comic Sans MS,Georgia,"Times New Roman", Times, serif; text-transform:uppercase;}
+#facebook_btn{display:block; width:170px; height:30px; margin-right:auto; margin-left:auto; margin-top:10px; background-image:url(images/zalogujFacebook.png);}
+#google_btn{display:block; width:170px; height:30px; margin-right:auto; margin-left:auto; margin-top:10px; background-image:url(images/zalogujGoogle.png);}
+#lub{display:block; margin-right:auto; margin-left:auto; margin-top: 10px}
+#nowe_konto_btn{display:block; width:170px; height:30px; margin-left:auto; margin-right:auto; margin-top:10px; background-color:#5EA000; color:white}
+
+/*GET IT ON PANEL*/
+#google_play_btn{display:block; width:170px; height:35px; margin-right:auto; margin-left:auto; margin-top:5%; background-image:url(images/getit.jpg);}
+
+/*FOOTER*/
+#footerPan{ margin-right:auto; margin-left:auto; margin-top: 10%;display:block; position:relative; font:12px/15px  Comic Sans MS,Georgia, sans-serif;}
+
+/*REJESTRUJ PANEL*/
+#rejestrujPanel{width:550px; height:400px; display:block;  position:relative; margin-left:auto; margin-right:auto;   padding:0; border:2px solid #696969; background:#fff; color:#000;}
+#rejestrujPanel h2{display:block; position:relative; text-align: center;  top:5%; font:20px Comic Sans MS,Georgia, Times, serif; text-transform:uppercase;}
+#rejestracja_formularz{width:550px; position:relative; top:5%; height:108px; padding:0; margin:0 0 0 8px; }
+
+#komunikat_label{float:left; display:block; margin-left:4%; margin-top: 3%; color:#d22133; width:500px; }
+#haslo_label{float:left; width:100px; display:block; margin:15px 0px 0px 20px;}
+.inputs{width:120px; position:relative; display:block; float:left; top:10%; margin:15px 0px 0px 10px;}
+.labels{width:100px; position:relative; display:block; float:left; top:10%; margin:15px 0px 0px 20px}
+
+#regulamin{float:left; display:block; margin-top:10%;}
+#powroty{;display:block; margin-top:40%;}
+#powroty img{float:left}
+#powroty a{float:left; display:block; margin-right:auto;}
+
+/*PO REJESTRACJI*/
+#poRejestracjiDiv{width:650px; height:200px; display:block;  position:relative; margin-left:auto; margin-right:auto;   border:2px solid #696969; background:#fff; color:#000;}
+#poRejestracjiDiv h1{display:block; text-align: center; position:relative; top:5%; font:20px Comic Sans MS,Georgia, Times, serif; font-style:bold; text-transform:uppercase;}
+#poRejestracjiDiv p{display:block;  text-align: center; position:relative; top:20%; padding:0 15px 0 15px; font:15px Comic Sans MS,Georgia, Times, serif;}
+#powroty4{display:block; margin-top:17%;}
+#powroty4 img{float:left}
+#powroty4 a{float:left; display:block; margin-right:auto;}
+
+/*STRONA REGULAMINU*/
+#regulaminDiv{width:650px; height:1000px; display:block;  position:relative; margin-left:auto; margin-right:auto;   border:2px solid #696969; background:#fff; color:#000;}
+#regulaminDiv h1{display:block; text-align: center; position:relative; top:5%; font:30px Comic Sans MS,Georgia, Times, serif; font-style:bold; text-transform:uppercase;}
+#regulaminDiv p{display:block;  position:relative; top:5%; padding:0 15px 0 15px; font:14px Comic Sans MS,Georgia, Times, serif;}
+#powroty2{width:650px; float:left; display:block; margin-top:10%;}
+#powroty2_div{display:block; margin-top:18%;}
+#powroty2_div img{float:left}
+#powroty2_div a{float:left; display:block; margin-right:auto;}
+#utworz_konto_btn{float:left; display:block; width:190px; height:40px; margin-left:30%; margin-top:5%; background-color:#5EA000; color:white}
+
+
+/*STRONA ZAPOMNIALEM HASLA*/
+#resetujPanel{width:550px; height:250px; display:block;  position:relative; margin-left:auto; margin-right:auto;   padding:0; border:2px solid #696969; background:#fff; color:#000;}
+#resetujPanel h2{display:block; position:relative; text-align: center;   top:5%; font:20px Comic Sans MS,Georgia, Times, serif; text-transform:uppercase;}
+#resetujPanel label{width:100px; position:relative; display:block; float:left; margin-top:5%; margin-left: 15% }
+#input_mail_resetowanie{float:left; display:block; width:200px; height:16px;  margin-top:5%; margin-left: 0%;}
+#input_login_resetowanie{float:left; display:block; width:200px; height:16px;  margin-top:5%; margin-left: 0% }
+#resetuj_haslo_btn{float:left; display:block; width:190px; height:30px; margin-left:33%; margin-top:5%; background-color:#5EA000; color:white}
+#powroty3{display:block; margin-top:30%;}
+#powroty3 p{text-align: center; margin-top:5%;}
+#powroty3 a{display:block; margin-left:38%; margin-right:auto;}

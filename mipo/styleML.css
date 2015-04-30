@@ -1,0 +1,94 @@
+/* CSS Document */
+body{padding:0; margin:0; font:14px/20px Arial, Helvetica, sans-serif; color:#3D3C2C; font-weight:normal; background-color:#e6e5e5}
+div, p, h1, h2, h3, ul, img{padding:0px; margin:0px;}
+ul{list-style-type:none;}
+
+/* TOP PANEL */
+#topPan{width:786px; height:120px; position:relative; margin:0 auto; padding:0; left:7px; background:url(images/menu2.png)}
+#topPan img{width:110px; height:87px; display:block; padding:23px 0px 0 80px; }
+/* Menu Panel */
+#topPanMenu{width:520px; height:60px; display:block; position:absolute; top:0px; right:9px; margin:0; padding:0}
+#topPanMenu img{width:45px; height:40px; display:block; padding:15px 0 0 455px;} 
+#topPanMenu p{display:block; padding:0px 0 0 430px; font:10px/10px Georgia,"Times New Roman", Times, serif; color: #e6e5e5}
+#topPanMenu ul li{float:left; width:104px; display:block; text-align:center;}
+#topPanMenu ul li a{width:104px; height:35px; display:block; font:14px/14px Georgia,"Times New Roman", Times, serif; color:#e6e5e5; text-decoration:none; margin:0; padding:10px 0 0 0; } //moje grupy
+.link1{color:#e6e5e5}
+.link1:hover{color: #e5e5e5; border-bottom: 2px solid #DCDAC2; padding-bottom: 20px}
+.link2{color:#e6e5e5; text-decoration: none; font: 10px/10px Georgia,"Times New Roman", Times, serif;}
+.link2:hover{color: #e5e5e5}
+#topPanMenu ul li span{width:104px; height:35px; display:block; color:#2E4E00; text-decoration:none; padding:61px 0 0 0; line-height:14px;} //lista zakupów 
+
+/* /TOP PANEL */
+
+/* HEADER PANEL */
+#headerPan{width:778px; height:327px; position:absolute; margin:0 auto 50px 0; padding:0; top:50px}
+#headerPan h1{width:526px; height:256px; position:absolute; top:35px; right:0px; color:#fff; font-size:36px; line-height:18px; text-transform:uppercase; text-indent:-2000px;}
+#headerPanleft{ width:237px; height:374px; position:absolute; top:147px; left:290px;}
+
+#headerPan #ourblog{ float:left; width:237px; height:62px; position:relative; margin:0 auto; background:url(images/icon1.png) 0 0 no-repeat;}
+#headerPan #ourblog h2{width:90px; height:10px; background:#a0b7b0; display:block; position:absolute; left:0px; top:0px; margin:14px 0 5px 81px; font:16px/14px Georgia, "Times New Roman", Times, serif; color:#000000; z-index:1; text-transform:uppercase;}
+#headerPan #ourblog p{width:103px; height:10px; display:block; position:absolute; font:12px/14px Georgia,"Times New Roman", Times, serif; color:#000000; background:#fff; margin:34px 0 0 81px; z-index:1; }
+#headerPan #ourblog a{text-decoration:none; display:block; width:237px; height:62px;}
+
+
+#headerPan #possib{ float:left; width:237px; height:62px; position:relative; margin:13px 0 0 0; background:url(images/icon2-nor.gif) 0 0 no-repeat;}
+#headerPan #possib h2{width:90px; height:10px; background:#a0b7b0; display:block; position:absolute; left:0px; top:0px; margin:14px 0 5px 81px; font:16px/14px Georgia, "Times New Roman", Times, serif; color:#000000; z-index:1; text-transform:uppercase;}
+#headerPan #possib p{width:103px; height:10px; display:block; position:absolute; font:12px/14px "Trebuchet MS",Arial, Helvetica, sans-serif; color:#2E5000; background:#fff; margin:34px 0 0 81px; z-index:1; }
+#headerPan #possib a{text-decoration:none; display:block; width:237px; height:62px;}
+
+/* BODY PANEL */
+#bodyPan{width:778px; height:887px; position:relative; margin:0 auto; padding:0;}
+/*Left Panel */
+#leftPan{width:239px; height:611px; position:absolute; top:0px; left:8px; margin:0; padding:0px;}
+#leftmemberPan{width:237px; height:196px; position:relative; margin:0 auto; padding:0}
+#leftmemberPan h2{height:48px;  display:block; position:relative; padding:0 0 0 57px; margin:12px 0 20px 13px; font:16px/48px  Georgia,"Times New Roman", Times, serif; color:#5EA000; text-transform:uppercase;}
+#leftPan form{width:220px; height:108px; padding:0; margin:0 0 0 8px;}
+
+#leftPango{width:220px; height:25px; position:absolute; top:160px; left:8px; border-top:1px solid #fff; background:#B0AD93; display:block; padding:0; margin:0; font-size:12px; color:#FFFFFA; line-height:23px; font-weight:bold;}
+#leftPango p.textposition a{float:left; padding:0 0 0 20px; margin:0; text-decoration:none; color:#FFFFFA; background:#B0AD93;}
+#leftPango p.textposition a:hover{text-decoration:underline; background:none;}
+#leftPan form input.gobutton{float:right; background:url(images/arrow4.gif) no-repeat 30px 0 #63614F; border:none; width:45px; height:21px; display:block; margin:2px 0 0 0; padding:0 0 0 5px; text-decoration:none; color:#fff; font:14px/21px "Trebuchet MS",Arial, Helvetica, sans-serif; text-transform:uppercase; text-align:left;}
+
+.sum ol{list-style-type:none; float:left; margin: 0 0 0 0; text-align: center; height: 2em; line-height: 2em}
+.sum ol a {display:block; text-decoration:none; padding:0 5px;margin:14px 23px 10px 70px; font:16px/14px Georgia, "Times New Roman", Times, serif; color:#000000;}
+.sum ol>li:hover{text-decoration:none; background:url(images/icon4-hoverML.gif) no-repeat 0 0;}
+.sum ol>li{float: left; width:237px; height:62px; background:url(images/icon4a-nor.gif) 0 0 no-repeat; margin: 0 0px 0 0;  margin-left:1px;}
+.sum ol>li:first-child{margin-left:0px;}
+.sum ol>li>ul{list-style-type: none; width: 237px; position: absolute; text-align:left; padding-left: 0px; margin: -238px 0 0 0; display: none; background-color:#EEE}  
+.sum ol>li>ul img{width: 20px; height: 20px; padding: 0px 10px 0px 10px; }
+.sum ol>li>ul>il{background-color:#EEE}
+.sum ol>li>ul>li:hover{background-color:#DDD;}
+.sum ol>li:hover>ul{display: block;}
+
+
+
+/*/Left Panel */
+/*Right Panel */
+#rightPan{width:504px; height:650px; position:absolute; left:570px; top:126px; right:10px; background:url(images/notebook.png) 0 0 no-repeat; }
+#rightbodyPan{width:484px; height:555px; position:absolute; top:66px; left:10px; color:#3D3C2C;}
+#rightbodyPan #table{width: 480px; height: 31px; border-bottom: 2px solid #DCDAC2; float: left; top: 8px; left:6px; position: absolute}
+#rightbodyPan #table .column1{width:125px; height: 550px; float:left;}
+#rightbodyPan #table .column1 h2{margin:11px 0 15px 35px; font:12px/12px Georgia, "Times New Roman", Times, serif;}
+#rightbodyPan #table  p{margin:5px 5px 8px 35px; padding-top: 10px; padding-bottom: 0px; font:12px/12px Georgia, "Times New Roman", Times, serif;}
+#rightbodyPan #table input{margin:5px 5px 8px 35px; padding-top: 5px; font:12px/12px Georgia, "Times New Roman", Times, serif;}
+#rightbodyPan #table .column2{width:125px; height: 550px; float:left; }
+#rightbodyPan #table .column2 h2{margin:11px 0 5px 35px; font:12px/12px Georgia, "Times New Roman", Times, serif;}
+#rightbodyPan #table .column3{width:150px; height: 550px; float:left; }
+#rightbodyPan #table .column3 h2{margin:11px 0 5px 35px; font:12px/12px Georgia, "Times New Roman", Times, serif;}
+#rightbodyPan #table .column4{width:50px; height: 550px; float:left; position: absolute; padding: 29px 0 0 400px}
+#rightbodyPan #table .column4 h2{margin:11px 0 5px 35px; font:12px/12px Georgia, "Times New Roman", Times, serif;}
+#rightbodyPan #table .column4 .img1{width: 17px; height: 17px; padding: 11px 0px 0px 50px; }
+#rightbodyPan #table .column5{width:50px; height: 550px; float:left; position: absolute; padding: 29px 0 0 400px}
+#rightbodyPan #table .column5 h2{margin:11px 0 5px 35px; font:12px/12px Georgia, "Times New Roman", Times, serif;}
+#rightbodyPan #table .column5 .img2{width: 17px; height: 17px; padding: 11px 0px 0px 22px; }
+#rightbodyPan .sum{width:400px; height:31px; position:absolute; left:0px; top:516px; right:0px; padding-left: 80px; border-top:1px solid #DCDAC2}
+
+/* /BODY PANEL */
+
+/*FOOTER*/
+/*
+footer{width: 778px; height: 200px; float: left; background-image: url(images/dol.png); background-repeat: no-repeat; margin-top: 150px}
+.twitter{padding-left: 520px; padding-right: 610px}
+.facebook{padding-left: 610px; padding-right: 520px}
+.dogory{width: 300px; height: 60px; border-radius: 7px; background-color: #000000; border-color: #000000; font-family: Open Sans; color: #fefefe; font-size: 12px; font-weight: 400; line-height: 18px;}
+*/
