@@ -85,7 +85,11 @@ if(!isset($_SESSION['zalogowany'])){
                         </div>
                       
                     </h4>
-                    <?php filldiv() ?>
+                    <?php
+                        include("pomocnicza.php");
+                        $j = new Jakas();
+                        $j->filldiv()
+                    ?>
                     <div class="sum">
                         <h2 class="s1"> Suma: </h2>
                         <h2 class="s2">2,89 zł‚</h2>
@@ -107,81 +111,9 @@ if(!isset($_SESSION['zalogowany'])){
         </div>
 
     </body>
-    <?php
-    $name = $_POST['nazwa'];
-    $price = $_POST['cena'];
-    $quantity = $_POST['ilosc'];
-    $note = $_POST['notatka'];
-    $priority = $_POST['priorytet'];
-    $dodaj = $_POST['dodaj'];
-    $servername = "127.0.0.1";
-    $username = "root";
-    $password = "";
-    $dbname = "app";
-
-    if (isset($dodaj)) {
-        $connection = @mysql_connect($servername, $username, $password)
-                or die('Brak po³¹czenia z serwerem MySQL');
-        $db = @mysql_select_db($dbname, $connection)
-                or die('Nie mogê po³¹czyæ siê z baz¹ danych');
-
-        // dodajemy rekord do bazy 
-        $ins = @mysql_query("INSERT INTO items SET name='$name', price='$price',quantity='$quantity',note='$note', priority='$priority'");
-
-        if ($ins)
-            header("Location: nowyprodukt.html");
-        else
-            echo "B³¹d nie uda³o siê dodaæ nowego rekordu";
-        mysql_close($connection);
-    }
-
-    function filldiv() {
-        $servername = "127.0.0.1";
-        $username = "root";
-        $password = "";
-        $dbname = "app";
-        $connection = @mysql_connect($servername, $username, $password)
-                or die('Brak po³¹czenia z serwerem MySQL');
-        $db = @mysql_select_db($dbname, $connection)
-                or die('Nie mogê po³¹czyæ siê z baz¹ danych');
-
-        $loopResult = '';
-        $wynik = mysql_query("SELECT name,price,quantity,priority FROM items")
-                or die('B³¹d zapytania');
-
-        if (mysql_num_rows($wynik) > 0) {
-            echo '<table id="table">';
-            echo '<tr>
-                            <th class="th1">Nazwa</th>
-                            <th class="th2">Ilosc</th> 
-                            <th class="th3">Cena</th>
-                            <th class="th4">Priorytet</th>
-                            <th class="th5"></th>
-                        </tr>';
-            
-            while ($r = mysql_fetch_assoc($wynik)) {
-                $loopResult .= ' 
-                        <tr class="column1">
-                            <td>' . $r['name'] . '</td>
-                        </tr>
-                        <tr class="column2">
-                            <td>' . $r['quantity'] . '</td>
-                        </tr>
-                        <tr class="column3">
-                            <td>' . $r['price'] . '</td>
-                        </tr>
-                        <tr class="column4">
-                            <td>' . $r['priority'] . '</td>
-                        </tr>
-                        <tr class="column5">
-                            <td><img class="img1" src="images/icon1.gif" type="button" name="usuwanie"/></td>
-                        </tr>
-                    ';
-            }
-             echo $loopResult;
-             echo '</table>';
-        }
-       
-    }
-    ?>
+<?php
+    include('dodawanie.php');
+    $dodawanie = new Dodawanie();
+    $dodawanie -> dodajProdukt();
+?>
 </html>
