@@ -170,6 +170,7 @@ ul{list-style-type:none;}
 /*DODAWANIE GRUPY*/
 #submit_nowa_grupa{float:left; display:block; margin-right:auto; margin-left: 30%; margin-top: 5% }
 #anuluj_btn{float:left; display:block; margin-right:auto;margin-top: 5%  }
+
 .grupa_class{
     float:left;
     display:block; 

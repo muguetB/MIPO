@@ -10,6 +10,16 @@
 <link href="style2.css" rel="stylesheet" type="text/css"/>
 </head>
 
+
+<script> 
+jQuery(document).ready(function($){
+    $( "#dodaj_czlonkow_grupy" ).autocomplete({
+      source: "suggestions.php"
+    });
+  });
+	</script> 
+
+
  <script>
  $(document).ready(function() {
 $(function() {
@@ -47,43 +57,69 @@ alert("Dodano osobę!");
 
 <script>
   var loadFile = function(event) {
+    var  input = document.getElementById('chosen_pic');
+    var file = input.files[0];
+    if(file.size > 100000) {  
+       alert("Rozmiar pliku jest za du�y! Wybierz inny");
+    }
+    else{
     var output = document.getElementById('output');
     output.scr = null;
     output.src = URL.createObjectURL(event.target.files[0]);
+
+    }
+    
   };
   
  function dodaj()
 {
-    var objTo = document.getElementById('new_input')
+    var objTo = document.getElementById('new_input');
     var divtest = document.createElement("div");
-    divtest.innerHTML = '<input class="grupa_class" id="dodaj_czlonkow_grupy" placeholder="Dodaj członków" name="czlonkowie" type="text">\n\
+    divtest.innerHTML = '<input class="grupa_class" id="dodaj_czlonkow_grupy" placeholder="Dodaj członków" name="czlonkowie[]" type="text">\n\
 <button id="usun_czlonkow" onClick="usun()" type="button">Usun</button>';
     objTo.appendChild(divtest);
-}
 
+      $("input:text[id^='dodaj_czlonkow_grupy']").autocomplete({
+      source: "suggestions.php"
+    });
+  
+
+            
+ }
 function usun(){
- var elem = document.getElementById('dodaj_czlonkow_grupy');
- var elem2 = document.getElementById('usun_czlonkow');
-    elem.parentNode.removeChild(elem);
-    elem2.parentNode.removeChild(elem2)
-   
+ var elem = document.getElementById("new_input").lastChild;
+ elem.remove();
 }
 
+function closeDialog() { 
+ document.getElementById("formGrupa").reset();
+ var img = document.getElementById('output');
+ img.src = 'images/grupafoto.png';
+ 
+ var elem = document.getElementById("new_input");
+ elem.remove(elem.childNodes);
+
+    $("#dialog").dialog("close");
+    
+} 
 </script>
 <body>
     <div class="container">
        <div class="main">
        <div id="dialog" title="Nowa grupa">
-       <form action="mojeGrupy.php" method="post">
+          
+           
+       <form id="formGrupa" action="mojeGrupy.php" method="post" enctype="multipart/form-data">
        <input class="grupa_class" id="nazwa_grupy" placeholder="Nazwa grupy" name="nazwa_grupy" type="text" required>
        <div id="new_input">
-       <input class="grupa_class" id="dodaj_czlonkow_grupy" placeholder="Dodaj członków" name="czlonkowie" type="text">
+       <input class="grupa_class" id="dodaj_czlonkow_grupy" placeholder="Dodaj członków" name="czlonkowie[]" type="text">
        </div>
        <button id="dodaj_czlonkow" onClick="dodaj()" type="button">Dodaj</button> 
        <img id="output" src="images/grupafoto.png" height="80px" width="80px"/>
-       <input type="file" id="chosen_pic" accept="image/*" onchange="loadFile(event)" background-color="#a0b7b0">
+       <input type="file" name="image" accept=".jpeg,.jpg" id="chosen_pic" accept="image/*" onchange="loadFile(event)" background-color="#a0b7b0">
+        <label id="formatPliku">Wymagany format pliku- jpg</label>
        <input class="buttons" id="submit_nowa_grupa" name="submit_nowa_grupa" type="submit" value="Dodaj">
-       <button class="buttons" id="anuluj_btn" type="button">Anuluj</button> 
+       <button class="buttons" id="anuluj_btn" type="button" onclick="closeDialog()">Anuluj</button> 
        </form>
     </div>
        </div></div>
@@ -95,7 +131,7 @@ function usun(){
        <form action="mojeGrupy.php" method="post">
        <input class="grupa_class" id="nazwa_kontaktu" placeholder="Nazwa kontaktu" name="name_contact" type="text" required>
        <input class="grupa_class" id="email_kontakt" placeholder="Dodaj maila" name="name" type="text">
-       <img id="output" src="images/grupafoto.png" height="80px" width="80px"/>
+       <img id="output" name="output" src="images/grupafoto.png" height="80px" width="80px"/>
        <input type="file" id="chosen_pic_contact" accept="image/*" onchange="loadFile(event)" background-color="#a0b7b0">
        <input class="buttons" id="submit_nowy_kontakt" type="submit" value="Dodaj">
        <button class="buttons" id="anuluj_btn" type="button">Anuluj</button> 
@@ -129,38 +165,117 @@ function usun(){
     <div id="rightPan">
     <div id="rightbodyPan">
         <img id="grupy_img" src = "images/grupy.png" height="40" alt = "grupy"/> 
-        <img id="grupa" src = "images/dom.png" height="40" width="40" alt = "grupa_dom"/> 
-        <img id="grupa" src = "images/biuro.png" height="40" width="40" alt = "grupa_biuro"/>
+          <?php
+                  $j = new Jakas();
+                   $j->filldiv()
+                    ?>
         <img id="ulubione_img" src = "images/ulubione.png" height="40" alt = "ulubione"/> 
       <!--  <button id="edytuj_btn" type="button"></button> -->
     </div>
     </div>
  </body>
  
-
- <?php
+  <?php
      $servername = "127.0.0.1";
      $username = "root";
      $password = "";
      $dbname = "app";
+     $sql="";
      
       mysql_connect($servername, $username, $password);
       mysql_select_db($dbname);
+      
+     if(isset($_POST['submit_nowa_grupa'])){
 
- if(isset($_POST['submit_nowa_grupa']))
- {
-     $name = $_POST['nazwa_grupy'];
+      $name = $_POST['nazwa_grupy'];
+      $czlonkowie = $_POST['czlonkowie'];
+      
+      if(isset($_FILES['image']) && $_FILES['image']['size'] > 0){
 
-$sql = "INSERT INTO groups (groupName)
-VALUES ('$name')";
+        $tmpName = $_FILES['image']['tmp_name'];
+        $fp = fopen($tmpName, 'r');
+        $data = fread($fp, filesize($tmpName));
+        $data = addslashes($data);
+        fclose($fp);
+        $sql = "INSERT INTO groups (groupName, groupPhoto)
+        VALUES ('$name','$data')";
+       
+       
+      }
+    else{
+        $sql = "INSERT INTO groups (groupName)
+        VALUES ('$name')";
+    }
+    
+       if (mysql_query($sql)){
 
-if (mysql_query($sql)){
+          $sql2 = "SELECT idGroup from groups WHERE groupName='$name'";
+          $result= mysql_query($sql2);
+          $groupId = mysql_result($result, 0);
 
-$message = "dodano";
-echo "<script type='text/javascript'>window.alert('$message');</script>";
-} 
+          //dodaje kazdego czlonka grupy do tabeli groupmembers
+          foreach($czlonkowie as $czlonkowie){
+             $sql3 = "INSERT INTO groupmembers VALUES ('$groupId','$czlonkowie' )";
+             mysql_query($sql3);
+           }
+
+         $message = "dodano";
+         echo "<script type='text/javascript'>window.alert('$message');</script>";
+            
  }
- 
+}
+   ?>
+ <?php
+  class Jakas{
+ public function filldiv() {
+        $servername = "127.0.0.1";
+        $username = "root";
+        $password = "";
+        $dbname = "app";
+        $connection = @mysql_connect($servername, $username, $password)
+                or die('Brak połączenia z serwerem MySQL');
+        $db = @mysql_select_db($dbname, $connection)
+                or die('Nie mogę połączyć się z bazą danych');
+
+        $loopResult = '';
+        $wynik = mysql_query("SELECT groupName,groupPhoto FROM groups")
+                or die('Błąd zapytania');
+
+        
+        
+        if (mysql_num_rows($wynik) > 0) {
+            echo '<table id="table">';
+            echo '<tr>
+                    <th class="th1"></th>
+                </tr>';
+            
+            while ($r = mysql_fetch_assoc($wynik)) {
+                if($r['groupPhoto'] != NULL){
+                $loopResult .= ' 
+                        <tr class="column1">
+                            <td>' . $r['groupName'] . '</td>
+                                <td> </td>
+                            <td> <input type="image" height="40" width="40" src="data:image/jpeg;base64,'.base64_encode( $r['groupPhoto'] ). '"/> </td>
+                        </tr>
+                    ';
+                }
+                else{
+                  $loopResult .= ' 
+                        <tr class="column1">
+                            <td>' . $r['groupName'] . '</td>
+                                <td> </td>
+                            <td> <input type="image" height="40" width="40" src="images/grupafoto.jpg"/> </td>
+                        </tr>
+                    ';   
+                }
+            }
+             echo $loopResult;
+             echo '</table>';
+        }
+    }
+  }
 ?>
+
+ 
  
 </html>

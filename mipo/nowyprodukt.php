@@ -29,7 +29,7 @@ if(!isset($_SESSION['zalogowany'])){
 
                 <ul>
                     <li><a class="link1" href="glowna.php">Lista zakupów</a></li>
-                    <li><a class="link1" href="mojeGrupy.html">Moje grupy</a></li>
+                    <li><a class="link1" href="mojeGrupy.php">Moje grupy</a></li>
                 </ul>
             </div>
         </div>
@@ -50,7 +50,7 @@ if(!isset($_SESSION['zalogowany'])){
                     <h2> Lista zakupów</h2>
                     <div class="podziel">
                         <ol>
-                            <li><a href="#">PODZIEL SIĘ LISTĄ</a>
+                            <li><a href="#">PODZIEL SI�? LISTĄ</a>
                                 <ul>
                                     <li><a href="#" name="info"> <img src="images/icon3.gif"/>Dom</a></li>
                                     <li><a href="#" name="info"> <img src="images/icon3.gif"/>Biuro</a></li>
