@@ -5,6 +5,7 @@
 		public function __construct()
 		{
 			session_start();
+			self::connect();
 		}
 		
 		public function connect()
@@ -116,8 +117,8 @@
 
 						if(mysql_num_rows($zapytanie) ==0 )
 						{
-							echo 'Nieprawidłowe dane logowania';
-							exit(0);
+							echo "<div id=\"blad\">ZŁE DANE</div>";
+							//exit(0);
 						}
 						else
 						{
@@ -165,6 +166,63 @@
 		{
 
 			echo $_SESSION['email'];
+		}
+
+		public function zmienLogin()
+		{
+			if(isset($_POST['zmien']))
+			{
+				if($_POST['changeLogin'] !=""){
+				$nowyLogin = $_POST['changeLogin'];
+				$email = $_SESSION['email'];
+				mysql_query("UPDATE users SET login = '$nowyLogin' WHERE email= '$email'") or die(mysql_error());
+				$_SESSION['login'] = $nowyLogin;
+			}
+			}
+		}
+		public function zmienHaslo()
+		{
+			if(isset($_POST['pwd2']) && isset($_POST['zmien']))
+			{
+				$password = $_POST['hasloo'];
+				$email = $_SESSION['email'];
+				$zapytanie = mysql_query("SELECT idUser FROM users WHERE password = '$password' AND email = '$email'");
+
+						if(mysql_num_rows($zapytanie) > 0)
+						{
+							$noweHaslo = $_POST['pwd2'];
+							mysql_query("UPDATE users SET password = '$noweHaslo' WHERE email= '$email'") or die(mysql_error());
+							$_SESSION['password'] = $noweHaslo;
+						}
+				
+			}
+		}
+		public function zmienEmail()
+		{
+			if(isset($_POST['zmien']))
+			{
+				if($_POST['emailNowy'] !=""){
+				$nowyEmail = $_POST['emailNowy'];
+				$login  = $_SESSION['login'];
+				mysql_query("UPDATE users SET email = '$nowyEmail' WHERE login= '$login'") or die(mysql_error());
+				$_SESSION['email'] = $nowyEmail;
+			}
+			}
+		}
+
+		public function usun()
+		{
+			if(isset($_POST['usunGo']))
+			{
+				$login = $_SESSION['login'];
+				$email = $_SESSION['email'];
+				$zapytanie = mysql_query("SELECT idUser FROM users WHERE login = '$login' AND email = '$email'");
+				if(mysql_num_rows($zapytanie) > 0)
+						{
+							mysql_query("DELETE FROM users WHERE email= '$email' AND login='$login'") or die(mysql_error());
+							self::wyloguj();
+						}
+			}
 		}
 		
 		
