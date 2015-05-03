@@ -1,6 +1,11 @@
 <?php
 include('zbior.php');
     $zbior = new Zbior();
+    $zbior -> wyloguj();
+    $zbior -> zmienLogin();
+    $zbior -> zmienHaslo();
+    $zbior -> usun();
+    $zbior -> zmienEmail();
     ?>
 
 
@@ -15,7 +20,14 @@ include('zbior.php');
         <div id="topPan"><a href="#"><img src="images/logo.gif" title="Green Solutions" alt="Green Solutions" /></a>
             <div id="topPanMenu">
                 <img src="images/photo.gif"/>
-                <p><a class="link2" href="zarzadzanieKontem.html">Moje konto</a>    <a class="link2" href="index.html">Wyloguj</a></p>
+                               <div class="konto">
+                 <form method="post">
+                    <a class="link2" href="zarzadzanieKontem.php">Moje konto</a>  
+                    <input class="link2" id="wyloguj_btn" type="submit"  value="Wyloguj" name="wyloguj"/>
+                    
+                </form>
+                </div>
+
                 <ul>
                     <li><a class="link1" href="glowna.php">Lista zakupów</a></li>
                     <li><a class="link1" href="mojeGrupy.html">Moje grupy</a></li>
@@ -36,8 +48,10 @@ include('zbior.php');
                         <h2>Zmień zdjęcie</h2>
                         <a href="#">&nbsp;</a> </div>
                     <div id="usun">
+                        <form method="post">
                         <h2>Usuń konto</h2>
-                        <a href="#">&nbsp;</a> </div>
+                        <input type="submit" name="usunGo">
+                        </form> </div>
                 </div>
             </div>
             <div id="rightPan2">
@@ -51,7 +65,7 @@ include('zbior.php');
                             <input type="text" name="changeLogin" class="inputs"/><br/>
                             <label id="naglowek">Zmiana hasła</label><br/><br/>
                             <label>Hasło</label>
-                            <input type="text" name="textfield" class="inputs"/>
+                            <input type="password" name="hasloo" class="inputs"/>
                             <label>Nowe hasło</label>
                             <input type="password" name="pwd1" class="inputs"/>
                             <label>Potwierdź hasło</label>
@@ -60,10 +74,7 @@ include('zbior.php');
                             <label>Adres email</label>
                             <label><?php $zbior->email()?></label><br/><br/>
                             <label>Nowy adres email</label>
-                            <input type="email" name="textfield" placeholder="nazwa@domena.com" class="inputs"/> <br/>
-                            <label id="naglowek">Dodatkowe informacje</label><br/><br/>
-                            <label>Miasto</label>
-                            <input type="text" name="textfield" class="inputs" /> <br/>
+                            <input type="email" name="emailNowy" placeholder="nazwa@domena.com" class="inputs"/> <br/>
                             <input id="zapisz_zmiany_btn" type="submit" value="Zapisz zmiany" name="zmien"/>
                         </form>
                     </div>

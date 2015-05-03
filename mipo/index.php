@@ -23,8 +23,14 @@
           <br/>
       <input id="zaloguj_btn" type="submit"  value="Zaloguj" name="wyslij"/>
       </form>
-      <p class="linki"> <a href="zapomnialemHasla.php">Zapomniałem hasła</a></p>
-    </div>
+      <p class="linki"><a href="zapomnialemHasla.php">Zapomniałem hasła</a></p>
+    <?php
+    include('zbior.php');
+    $zbior = new Zbior();
+    $zbior -> zaloguj();
+  ?>
+    </div> 
+
   </div>
     
     <div id="joinUs">
@@ -41,14 +47,7 @@
         <form action="https://play.google.com/store">
            <input id="google_play_btn" type="submit" value="" />
        </form>
-  </div>
-  
-  <?php
-    include('zbior.php');
-    $zbior = new Zbior();
-    $zbior -> zaloguj();
-  ?>
-    
+  </div>    
 </div>
 <footer id="footerPan">
     <p>Copyright © 2015 MIPO. © MIPO. All right reserved</p>
