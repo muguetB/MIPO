@@ -102,6 +102,17 @@ function closeDialog() {
     $("#dialog").dialog("close");
     
 } 
+
+ $(document).ready(function() {
+    if ($('div.message').length > 0) {
+        $('div.message').css('position', 'absolute')
+                                .css('top', '25%')
+                                .css('margin', '5% 45%');
+        setTimeout(function() {
+            $('div.message').fadeOut(1600);
+        }, 1800);
+    }
+});
 </script>
 <body>
     <div class="container">
@@ -181,6 +192,7 @@ function closeDialog() {
      $password = "";
      $dbname = "app";
      $sql="";
+     $message = '';
      
       mysql_connect($servername, $username, $password);
       mysql_select_db($dbname);
@@ -200,7 +212,6 @@ function closeDialog() {
         $sql = "INSERT INTO groups (groupName, groupPhoto)
         VALUES ('$name','$data')";
        
-       
       }
     else{
         $sql = "INSERT INTO groups (groupName)
@@ -218,9 +229,15 @@ function closeDialog() {
              $sql3 = "INSERT INTO groupmembers VALUES ('$groupId','$czlonkowie' )";
              mysql_query($sql3);
            }
-
-         $message = "dodano";
-         echo "<script type='text/javascript'>window.alert('$message');</script>";
+           
+   $message .= ' <div class="message">
+           <p>
+            Dodano grupe!
+            </p>
+          </div>';
+   echo $message;
+          echo '<meta http-equiv="refresh" content="1" />';
+ 
             
  }
 }
@@ -244,33 +261,25 @@ function closeDialog() {
         
         
         if (mysql_num_rows($wynik) > 0) {
-            echo '<table id="table">';
-            echo '<tr>
-                    <th class="th1"></th>
-                </tr>';
-            
+       //     echo '<table id="tableGroup">';
             while ($r = mysql_fetch_assoc($wynik)) {
                 if($r['groupPhoto'] != NULL){
                 $loopResult .= ' 
-                        <tr class="column1">
-                            <td>' . $r['groupName'] . '</td>
-                                <td> </td>
-                            <td> <input type="image" height="40" width="40" src="data:image/jpeg;base64,'.base64_encode( $r['groupPhoto'] ). '"/> </td>
-                        </tr>
-                    ';
+                    <div class="divGroup">
+                          <label id="addedName">'. $r['groupName'] . '</label>
+                          <input id="addedPhoto" type="image" height="40" width="40" src="data:image/jpeg;base64,'.base64_encode( $r['groupPhoto'] ). '"/> 
+                 </div>   ';
                 }
                 else{
                   $loopResult .= ' 
-                        <tr class="column1">
-                            <td>' . $r['groupName'] . '</td>
-                                <td> </td>
-                            <td> <input type="image" height="40" width="40" src="images/grupafoto.jpg"/> </td>
-                        </tr>
-                    ';   
+                      <div class="divGroup">
+                          <label id="addedName">'. $r['groupName'] . '</label>
+                         <input id="addedPhoto" type="image" height="40" width="40" src="images/grupafoto.jpg"/> 
+                           </div> 
+        ';   
                 }
             }
              echo $loopResult;
-             echo '</table>';
         }
     }
   }

@@ -140,6 +140,12 @@ ul{list-style-type:none;}
 
 /*KONIEC - tablica moje listy*/
 
+/*U£O¯ENIE IKON W MOJE GRUPY -> div rigthbodyPan*/
+#addedPhoto{ position:relative; display:block; margin-top:5%; margin-left: 5%}
+#addedName{position:relative;  float:left; display:block;  margin-left: 5%; font-weight: bold; font:14px, Comic Sans MS,"Trebuchet MS",Arial;}
+.divGroup{position:relative;  float:left; display:block;  margin-left: 5%}
+
+/*Grupy*/
 #grupa{position:relative;  float:left; display:block; margin-top:5%; margin-left:10%}
 #ulubione_img{position:relative; display:block; margin-top:40%;}
 #edytuj_btn{display:block; position:relative; width:27px; height:21px; float:right; margin-left:10%; background-image:url(images/edytuj.png);}
@@ -166,6 +172,8 @@ ul{list-style-type:none;}
 .buttons{color:white;font-style: bold;font: Comic Sans MS;background-color:#a0b7b0;}
 #output{float:left;display:block;  margin-top:5%; margin-left:10%}
 #chosen_pic{float:left;display:block; margin-top: 5%; margin-left:10%}
+#formatPliku{float:left; display:block; font:12px Comic Sans MS; margin-top: 5%; margin-left:10%}
+
 
 /*DODAWANIE GRUPY*/
 #submit_nowa_grupa{float:left; display:block; margin-right:auto; margin-left: 30%; margin-top: 5% }
@@ -219,3 +227,27 @@ footer{width: 778px; height: 200px; float: left; background-image: url(images/do
 .facebook{padding-left: 610px; padding-right: 520px}
 .dogory{width: 300px; height: 60px; border-radius: 7px; background-color: #000000; border-color: #000000; font-family: Open Sans; color: #fefefe; font-size: 12px; font-weight: 400; line-height: 18px;}
 */
+
+.message {
+    color: black;
+    margin: 10px;
+    width: 200px;
+    height: 80px;
+    padding: 25px;
+    border: 2px solid black;
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    
+  background: -webkit-linear-gradient(left top,#ccc2c2, white); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(bottom right, #ccc2c2, white); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(bottom right, #ccc2c2, white); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to bottom right, #ccc2c2, white); /* Standard syntax */
+}
+
+.message h4 {
+    margin-bottom: 15px;
+}
