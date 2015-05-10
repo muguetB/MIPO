@@ -220,7 +220,9 @@
 				if(mysql_num_rows($zapytanie) > 0)
 						{
 							mysql_query("DELETE FROM users WHERE email= '$email' AND login='$login'") or die(mysql_error());
-							self::wyloguj();
+							session_destroy();
+							header('Location: index.php');
+							
 						}
 			}
 		}
