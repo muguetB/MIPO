@@ -20,6 +20,7 @@ if (!isset($_SESSION['zalogowany'])) {
     <script src="js/dialog.js" type="text/javascript"></script>
     <link href="style2.css" rel="stylesheet" type="text/css"/>
 </head>
+
 <script>
 $(document).ready(function() {
     $(function() {
@@ -35,6 +36,23 @@ $(document).ready(function() {
 
                 alert("Dodano listę");
             });
+        });
+</script> 
+
+<script>
+$(document).ready(function() {
+    $(function() {
+        $("#zmienNazwe").dialog({
+            autoOpen: false
+        });
+        $("#zmien").on("click", function() {
+            $("#zmienNazwe").dialog("open");
+        });
+    });
+          $("#submit").click(function(e) {
+
+                alert("");
+            });    
         });
 </script> 
 
@@ -70,28 +88,47 @@ var loadFile = function(event) {
     output.src = URL.createObjectURL(event.target.files[0]);
 };
 </script>
+
+<script>
+function closeDialog() { 
+   document.getElementById("dodajProdukt").reset();
+
+   $("#dodawanieProduktu").dialog("close");
+} 
+</script>
+
+
 <body>
     <div class="container">
         <div class="main">
             <div id="dialog" title="Nowa lista">
-                <form action="" method="post">
-                    <input class="grupa_class" id="nazwa_listy" placeholder="Nazwa listy" name="nameList" type="text" required>
-                    <button id="button" type="submit" name="dodaj">Dodaj</button>
-                    <button class="buttons" id="anuluj_btn" type="button">Anuluj</button> 
+            <form action="#" method="post">
+                <input class="grupa_class" id="nazwa_listy" placeholder="Nazwa listy" name="nameList" type="text" required>
+                <button id="button" type="submit" name="dodajListe">Dodaj</button>
+            </form>
+        </div>
+
+            <div id="zmienNazwe" title="Zmiana nazwy listy">
+                <form action="#" method="post">
+                    <input class="inputs" id="zmianaNazw/e" name="nowaNazwaListy" placeholder="Nazwa listy" type="text" required>
+                    <button id="button" type="submit" name="zmiana">Zmien</button>
                 </form>
             </div>
+
             <div id="dodawanieProduktu" title="Dodaj produkt">
                 <form name="dodajProdukt" id="dodajProdukt" action="#" method="post">
                     <input class="inputs" type="text" placeholder="nazwa" name="nazwa" />
                     <input class="inputs" type="text" required=required placeholder="ilosc" name="ilosc"/>
-                    <input class="inputs" type="text" required=required placeholder="cena" name="cena"/>
+                    <input class="inputs" type="text" placeholder="cena" name="cena"/>
                     <p class="inputs">Priorytet</p>
                     <input type="radio" name="priorytet" value="tak" checked>Tak<input type="radio" name="priorytet" value="nie">Nie
-                    <input id="notatka" type="text" required=required placeholder="notatka" name="notatka"/>
+                    <input id="notatka" type="text" placeholder="notatka" name="notatka"/>
                     <button id="button" type="submit" name="dodaj">Dodaj</button>
                     <button id="zakoncz" type="submit" name="zakoncz">Zakończ</button>
+                   
                 </form>
             </div>
+
             <div id="topPan"><a href="#"><img src="images/logo.gif" title="Green Solutions" alt="Green Solutions" /></a>
                 <div id="topPanMenu">
                     <img src="images/photo.gif"/>
@@ -112,14 +149,12 @@ var loadFile = function(event) {
             <div id="headerPan">
                 <div id="bodyPan">
                     <div id="leftPan">
-
-
                         <div id="nowaLista">
-                            <h2><center>Nowa lista</center></h2>
-                            <a id="opener" href="#">&nbsp;</a> </div>
+                        <h2><center>Nowa lista</center></h2>
+                        <a id="opener" href="#"></a> </div>
                             <div id="mojeListy">
                                 <h2><center>Moje listy</center></h2>
-                                <a href="mojelisty.php">&nbsp;</a> </div>
+                                <a href="mojelisty.php"></a> </div>
                                 
 
                                 <h2> Lista zakupów</h2>
@@ -137,23 +172,26 @@ var loadFile = function(event) {
                                         </li>
                                     </ol>
                                 </div>
-                                <div id="zmien">
+                                 <div id="zmien">
                                     <h2><center>Zmień nazwę</center></h2>
-                                    <a href="#">&nbsp;</a> </div>
-                                    <div id="usun" name="usunListe">
-                                        <h2><center>Usuń listę</center></h2>
-                                        <a href="#">&nbsp;</a> </div>
-                                        <div id="kopiuj">
-                                            <h2><center>Kopiuj listę</center></h2>
-                                            <a href="#">&nbsp;</a> </div>
-                                            <div id="sortuj" name="sortuj">
-                                                <h2><center>Sortuj</center></h2>
-                                                <a href="#">&nbsp;</a> </div>
-                                            </div>
-                                        </div>
+                                    <a href="#"></a> 
+                                </div> 
+                                <form method="post">
+                                    <input id="usun" type="submit" name="usunListe" value="Usuń listę" onClick="confirm('Czy na pewno usunąć listę?')">
+                                </form> 
+                                <form method="post">
+                                    <input id="kopiuj" type="submit" name="kopiuj" value="Kopiuj listę">
+                                </form> 
+                                <form method="post">
+                                    <input id="sortuj" type="submit" name="sortuj" value="Sortuj">
+                                </form> 
+                                </div>
+                            </div>
                                         <div id="rightPan">
                                             <div id="rightbodyPan">
-                                                <h2><center><b>Nazwa listy</b></center></h2>
+                                                <?php  include('dodawanie.php');
+                                                        $dodawanie = new Dodawanie();
+                                                        $dodawanie -> wyswietlNazwe(); ?>
                                                 <h4>
                                                     <div class="b1">
                                                         <h2 id="dodajP"> Nowy produkt</h2>
@@ -163,7 +201,7 @@ var loadFile = function(event) {
                                                 </h4>
                                                 <?php
                                                 include("pomocnicza.php");
-                                                $j = new Jakas();
+                                                $j = new Jakas();                                                
                                                 $j->filldiv()
                                                 ?>
                                                 <div class="sum">
@@ -177,11 +215,11 @@ var loadFile = function(event) {
                                 </div>
                             </div>
                         </body>
-<?php
-    include('dodawanie.php');
-    $dodawanie = new Dodawanie();
-    $dodawanie -> dodajProdukt();
-    $dodawanie -> sortuj();
-    $dodawanie -> usun();
-?>
-</html>
+                        <?php
+                        $dodawanie -> dodajProdukt();
+                        $dodawanie -> sortuj();
+                        $dodawanie -> usun();
+                        $dodawanie -> dodajListe();
+                        $j -> usunPozycje();
+                        ?>
+                        </html>
