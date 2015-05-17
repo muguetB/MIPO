@@ -30,29 +30,34 @@ $("#opener").on("click", function() {
 $("#dialog").dialog("open");
 });
 });
-// Validating Form Fields.....
+
 $("#submit").click(function(e) {
 alert("Dodano grup臋!");
 });
 });
-</script> 
 
- <script>
+/*Po naci渘i阠iu przycisku odpalane jest okno dialogowe i pobierane id tego zdj阠ia.
+ * Potem przekazywane jest do php */
  $(document).ready(function() {
 $(function() {
 $("#dialog2").dialog({
 autoOpen: false
 });
-$("#opener2").on("click", function() {
-$("#dialog2").dialog("open");
+$(".editable").on("click", function() {
+   $("#dialog2").dialog("open");
+   var id = $(this).attr('id');
+   var elem  = document.getElementById("hiddenId");
+   elem.value = id;
+    //$.post('ajax/delete.php', { id: id } function(data) {
 });
 });
 // Validating Form Fields.....
 $("#submit").click(function(e) {
-alert("Dodano osob臋!");
+alert("Zapisano zmiany!");
 });
 });
 </script> 
+
 
 
 <script>
@@ -103,6 +108,12 @@ function closeDialog() {
     
 } 
 
+function closeEdit() { 
+ document.getElementById("formEdycja").reset();
+    $("#dialog2").dialog("close");
+    
+} 
+
  $(document).ready(function() {
     if ($('div.message').length > 0) {
         $('div.message').css('position', 'absolute')
@@ -113,80 +124,21 @@ function closeDialog() {
         }, 1800);
     }
 });
+
+ 
+
 </script>
+
 <body>
     <div class="container">
        <div class="main">
        <div id="dialog" title="Nowa grupa">
-          
+         <form id="formGrupa"  method="post" enctype="multipart/form-data">
+         
+         <input class="grupa_class" id="nazwa_grupy" placeholder="Nazwa grupy" name="nazwa_grupy" type="text" required>
            
-       <form id="formGrupa" action="mojeGrupy.php" method="post" enctype="multipart/form-data">
-       <input class="grupa_class" id="nazwa_grupy" placeholder="Nazwa grupy" name="nazwa_grupy" type="text" required>
-       <div id="new_input">
-       <input class="grupa_class" id="dodaj_czlonkow_grupy" placeholder="Dodaj cz艂onk贸w" name="czlonkowie[]" type="text">
-       </div>
-       <button id="dodaj_czlonkow" onClick="dodaj()" type="button">Dodaj</button> 
-       <img id="output" src="images/grupafoto.png" height="80px" width="80px"/>
-       <input type="file" name="image" accept=".jpeg,.jpg" id="chosen_pic" accept="image/*" onchange="loadFile(event)" background-color="#a0b7b0">
-        <label id="formatPliku">Wymagany format pliku- jpg</label>
-       <input class="buttons" id="submit_nowa_grupa" name="submit_nowa_grupa" type="submit" value="Dodaj">
-       <button class="buttons" id="anuluj_btn" type="button" onclick="closeDialog()">Anuluj</button> 
-       </form>
-    </div>
-       </div></div>
-        
-       
-            <div class="containerFriends">
-       <div class="main">
-       <div id="dialog2" title="Nowy kontakt do ulubionych">
-       <form action="mojeGrupy.php" method="post">
-       <input class="grupa_class" id="nazwa_kontaktu" placeholder="Nazwa kontaktu" name="name_contact" type="text" required>
-       <input class="grupa_class" id="email_kontakt" placeholder="Dodaj maila" name="name" type="text">
-       <img id="output" name="output" src="images/grupafoto.png" height="80px" width="80px"/>
-       <input type="file" id="chosen_pic_contact" accept="image/*" onchange="loadFile(event)" background-color="#a0b7b0">
-       <input class="buttons" id="submit_nowy_kontakt" type="submit" value="Dodaj">
-       <button class="buttons" id="anuluj_btn" type="button">Anuluj</button> 
-       </form>
-    </div>
-       </div></div>
-    
-
- 
-<div id="topPan"><a href="#"><img src="images/logo.gif" title="Green Solutions" alt="Green Solutions" /></a>
-  <div id="topPanMenu">
-      <img src="images/photo.gif"/>
-      <p><a class="link2" href="#">Moje konto</a>    <a class="link2" href="#">Wyloguj</a></p>
-    <ul>
-        <li><a class="link1" href="glowna.php">Lista zakup贸w</a></li>
-        <li><a class="link1" href="#">Moje grupy</a></li>
-    </ul>
-  </div>
-</div>
-<div id="headerPan">
-  <div id="headerPanleft">
-    <div id="nowaLista">
-        <h2>Nowa grupa</h2>
-        <a id="opener" href="#">&nbsp;</a> </div>
-    <div id="mojeListy">
-        <h2>Dodaj do ulubionych</h2>
-      <a id="opener2" href="#">&nbsp;</a> </div>
-</div>
-</div>
-
-    <div id="rightPan">
-    <div id="rightbodyPan">
-        <img id="grupy_img" src = "images/grupy.png" height="40" alt = "grupy"/> 
-          <?php
-                  $j = new Jakas();
-                   $j->filldiv()
-                    ?>
-        <img id="ulubione_img" src = "images/ulubione.png" height="40" alt = "ulubione"/> 
-      <!--  <button id="edytuj_btn" type="button"></button> -->
-    </div>
-    </div>
- </body>
- 
-  <?php
+             <label id="komunikat_label">  
+               <?php
      $servername = "127.0.0.1";
      $username = "root";
      $password = "";
@@ -197,12 +149,57 @@ function closeDialog() {
       mysql_connect($servername, $username, $password);
       mysql_select_db($dbname);
       
+ /*Obs硊ga edytowania - po klikni阠iu jest uruchamiania odpowiednia funkcja */
+    if(isset($_POST['saveGroup'])){
+        editGroup();
+    }elseif(isset($_POST['deleteGroup'])){
+        deleteGroup();
+    }
+
+    function editGroup()
+        { 
+         if(isset($_POST['hiddenId'])){
+         $groupId = $_POST['hiddenId'];
+         $nameG = $_POST['new_nazwa_grupy'];
+         $sqlUpdate = "UPDATE groups SET groupName='$nameG' WHERE idGroup='$groupId'";
+         
+         if (mysql_query($sqlUpdate)) {
+         echo "Record updated successfully";
+         } else {
+         echo "Error updating record: " . $conn->error;
+         }
+         }
+    }
+    function deleteGroup()
+    {
+       if(isset($_POST['hiddenId'])){
+         $groupId = $_POST['hiddenId'];
+         $sqlUpdate = "DELETE FROM groups WHERE idGroup='$groupId'";
+         
+         if (mysql_query($sqlUpdate)) {
+         echo "Record updated successfully";
+         } else {
+         echo "Error updating record: " . $conn->error;
+         }
+         }
+    }
+
+    
+   //// 
      if(isset($_POST['submit_nowa_grupa'])){
 
       $name = $_POST['nazwa_grupy'];
       $czlonkowie = $_POST['czlonkowie'];
+     
+      $query = mysql_query("SELECT groupName FROM groups WHERE groupName = '". $name."'");
+
+      if (mysql_num_rows($query) != 0){
+           
+       echo " Grupa o podanej nazwie istnieje, sprobuj inna nazwe!";
+      }
+      else{
       
-      if(isset($_FILES['image']) && $_FILES['image']['size'] > 0){
+       if(isset($_FILES['image']) && $_FILES['image']['size'] > 0){
 
         $tmpName = $_FILES['image']['tmp_name'];
         $fp = fopen($tmpName, 'r');
@@ -238,10 +235,66 @@ function closeDialog() {
    echo $message;
           echo '<meta http-equiv="refresh" content="1" />';
  
-            
+       }       
  }
 }
    ?>
+             </label>
+         <div id="new_input">
+           <input class="grupa_class" id="dodaj_czlonkow_grupy" placeholder="Dodaj cz艂onk贸w" name="czlonkowie[]" type="text">
+           </div>
+        <button id="dodaj_czlonkow" onClick="dodaj()" type="button">Dodaj</button> 
+        <img id="output" src="images/grupafoto.png" height="80px" width="80px"/>
+        <input type="file" name="image" accept=".jpeg,.jpg" id="chosen_pic" accept="image/*" onchange="loadFile(event)" background-color="#a0b7b0">
+        <label id="formatPliku">Wymagany format pliku- jpg</label>
+        <input class="buttons" id="submit_nowa_grupa" name="submit_nowa_grupa" type="submit" value="Dodaj">
+        <button class="buttons" id="anuluj_btn" type="button" onclick="closeDialog()">Anuluj</button> 
+       </form>
+    </div>
+           
+           <div id="dialog2" title="Edytuj">
+         <form id="formEdycja" action="mojeGrupy.php" method="post">
+             <input name = "hiddenId" id="hiddenId" type="hidden" />
+             <input  id="new_nazwa_grupy" placeholder="Nowa nazwa grupy" name="new_nazwa_grupy" type="text" required>
+             <input class="buttons" id="anuluj_btn2" name="saveGroup" onclick="closeEdit()" type="submit" value="Anuluj"/>
+             <input class="buttons" id="zapisz_btn" name="saveGroup"  type="submit" value="Zapisz"/>
+             <input class="buttons" id="usun_btn"  type="submit" name="deleteGroup" value="Usun grupe"/> 
+       </form>
+    </div>
+       </div></div>
+       
+
+ 
+<div id="topPan"><a href="#"><img src="images/logo.gif" title="Green Solutions" alt="Green Solutions" /></a>
+  <div id="topPanMenu">
+      <img src="images/photo.gif"/>
+      <p><a class="link2" href="#">Moje konto</a>    <a class="link2" href="#">Wyloguj</a></p>
+    <ul>
+        <li><a class="link1" href="glowna.php">Lista zakup贸w</a></li>
+        <li><a class="link1" href="#">Moje grupy</a></li>
+    </ul>
+  </div>
+</div>
+<div id="headerPan">
+  <div id="headerPanleft">
+    <div id="nowaLista">
+        <h2>Nowa grupa</h2>
+        <a id="opener" href="#">&nbsp;</a> </div>
+</div>
+
+    <div id="rightPan">
+    <div id="rightbodyPan">
+        <img id="grupy_img" src = "images/grupy.png" height="40" alt = "grupy"/> 
+          <?php
+                  $j = new Jakas();
+                   $j->filldiv()
+                    ?>
+   
+    </div>
+    </div>
+ </body>
+ 
+  
  <?php
   class Jakas{
  public function filldiv() {
@@ -255,7 +308,7 @@ function closeDialog() {
                 or die('Nie mog臋 po艂膮czy膰 si臋 z baz膮 danych');
 
         $loopResult = '';
-        $wynik = mysql_query("SELECT groupName,groupPhoto FROM groups")
+        $wynik = mysql_query("SELECT groupName,groupPhoto,idGroup FROM groups")
                 or die('B艂膮d zapytania');
 
         
@@ -267,14 +320,15 @@ function closeDialog() {
                 $loopResult .= ' 
                     <div class="divGroup">
                           <label id="addedName">'. $r['groupName'] . '</label>
-                          <input id="addedPhoto" type="image" height="40" width="40" src="data:image/jpeg;base64,'.base64_encode( $r['groupPhoto'] ). '"/> 
-                 </div>   ';
+                          <input id="'.$r['idGroup'].'" type="image" class="editable" height="40" width="40" src="data:image/jpeg;base64,'.base64_encode( $r['groupPhoto'] ). '"/> 
+                
+</div>   ';
                 }
                 else{
                   $loopResult .= ' 
                       <div class="divGroup">
                           <label id="addedName">'. $r['groupName'] . '</label>
-                         <input id="addedPhoto" type="image" height="40" width="40" src="images/grupafoto.jpg"/> 
+                         <input id="'.$r['idGroup'].'" class="editable" type="image" height="40" width="40" src="images/grupafoto.jpg"/> 
                            </div> 
         ';   
                 }

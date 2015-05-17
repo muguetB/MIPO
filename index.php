@@ -11,9 +11,9 @@
       <img src = "images/logo.png" height = "400"  alt = "logo" class="center"/>
 </div>
     
-<div id="bodyPan">
-  <div id="leftPan">
-    <div id="leftmemberPan">
+<div id="bodyPan2">
+  <div id="leftPan2">
+    <div id="leftmemberPan2">
       <h2>Masz już konto?</h2>
       <form id="login" method="post">
         <label>Login</label>
@@ -33,15 +33,6 @@
 
   </div>
     
-    <div id="joinUs">
-      <h2>Dołącz do nas!</h2>
-       <button id="facebook_btn" type="button"></button> 
-       <button id="google_btn" type="button"></button> 
-       <img id="lub" src = "images/lub.png" width = "230" height="30"  alt = "linia" />
-       <form action="rejestracja.php">
-           <input id="nowe_konto_btn" type="submit" value="Utwórz nowe konto"/>
-       </form>
-  </div>
     
     <div id="getItOn">
         <form action="https://play.google.com/store">

@@ -13,9 +13,18 @@ img.center{display: block; margin-left: auto; margin-right: auto;}
 #leftmemberPan h2{height:48px; display:block; position:relative; margin-left:auto; margin-right:auto;padding:0 35px 0 35px;  font:16px/48px  Comic Sans MS,Georgia,"Times New Roman", Times, serif; text-transform:uppercase;}
 #leftPan form{width:220px; height:108px; background:#EBE9D7; padding:0; margin:0 0 0 8px; color:#333227;}
 #leftPan form label{width:72px; display:block; float:left; padding:14px 15px 0 16px; }
-.logowanie_input{float:left; display:block; width:101px; height:16px; margin:14px 0 9px 0}
+
+
+
+#bodyPan2{width:350px; position:relative; margin-left:auto; margin-right:auto; padding:0;}
+#leftPan2{width:350px; position:relative; top:0px;  margin:0; padding:0px;}
+#leftmemberPan2{width:350px; height:300px; position:relative; margin-left:auto; margin-right:auto; padding:0; border:2px solid #696969; background:#fff; color:#000;}
+#leftmemberPan2 h2{height:55px; display:block; position:relative; margin-left:auto; margin-right:auto; margin-top:5%; text-align: center;  font:22px  Comic Sans MS,Georgia,"Times New Roman", Times, serif; text-transform:uppercase;}
+#leftPan2 form{width:240px; height:140px; background:#EBE9D7; padding:0; margin-left:auto; margin-right:auto; color:#333227;}
+#leftPan2 form label{width:72px; display:block; float:left; padding:20px 15px 0 16px; }
+.logowanie_input{float:left; display:block; width:101px; height:16px; margin:20px 0 9px 0}
 #zaloguj_btn{
-    float:left; display:block; width:170px; height:30px; margin-left: 10%; margin-top:10%; background-color:#5EA000; color:white
+    float:left; display:block; width:170px; height:30px; margin-left: 10%; margin-top:25%; background-color:#5EA000; color:white
 }
 
 #leftPan ul{ display:block; float:right; width:150px; height:327px;}
@@ -24,16 +33,9 @@ img.center{display: block; margin-left: auto; margin-right: auto;}
 
 .linki{float:left; color:cornflowerblue; font-size:12px; margin-top:10px; margin-left:5px}
 
-/*JOIN US PANEL*/
-#joinUs{width:237px; height:240px; display:block; position:relative; margin-left:500px;  padding:0; border:2px solid #696969; background:#fff; color:#000;}
-#joinUs h2{height:48px; display:block; position:relative; padding:0 45px 0 45px;  font:16px/48px  Comic Sans MS,Georgia,"Times New Roman", Times, serif; text-transform:uppercase;}
-#facebook_btn{display:block; width:170px; height:30px; margin-right:auto; margin-left:auto; margin-top:10px; background-image:url(images/zalogujFacebook.png);}
-#google_btn{display:block; width:170px; height:30px; margin-right:auto; margin-left:auto; margin-top:10px; background-image:url(images/zalogujGoogle.png);}
-#lub{display:block; margin-right:auto; margin-left:auto; margin-top: 10px}
-#nowe_konto_btn{display:block; width:170px; height:30px; margin-left:auto; margin-right:auto; margin-top:10px; background-color:#5EA000; color:white}
 
 /*GET IT ON PANEL*/
-#google_play_btn{display:block; width:170px; height:35px; margin-right:auto; margin-left:auto; margin-top:5%; background-image:url(images/getit.jpg);}
+#google_play_btn{display:block; width:170px; height:35px; margin-right:auto; margin-left:auto; margin-top:20%; background-image:url(images/getit.jpg);}
 
 /*FOOTER*/
 #footerPan{ margin-right:auto; margin-left:auto; margin-top: 10%;display:block; position:relative; font:12px/15px  Comic Sans MS,Georgia, sans-serif;}

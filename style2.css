@@ -141,7 +141,7 @@ ul{list-style-type:none;}
 /*KONIEC - tablica moje listy*/
 
 /*U£O¯ENIE IKON W MOJE GRUPY -> div rigthbodyPan*/
-#addedPhoto{ position:relative; display:block; margin-top:5%; margin-left: 5%}
+#editable{ position:relative; display:block; margin-top:5%; margin-left: 5%}
 #addedName{position:relative;  float:left; display:block;  margin-left: 5%; font-weight: bold; font:14px, Comic Sans MS,"Trebuchet MS",Arial;}
 .divGroup{position:relative;  float:left; display:block;  margin-left: 5%}
 
@@ -169,15 +169,14 @@ ul{list-style-type:none;}
 #submit_nowa_grupa{float:left; display:block; margin-right:auto; margin-left: 30%; margin-top: 5% }
 #anuluj_btn{float:left; display:block; margin-right:auto;margin-top: 5%  }
 .grupa_class{float:left; display:block; position:relative; margin-top:5%;}
-.buttons{color:white;font-style: bold;font: Comic Sans MS;background-color:#a0b7b0;}
 #output{float:left;display:block;  margin-top:5%; margin-left:10%}
 #chosen_pic{float:left;display:block; margin-top: 5%; margin-left:10%}
 #formatPliku{float:left; display:block; font:12px Comic Sans MS; margin-top: 5%; margin-left:10%}
 
+/*EDYCJA GRUPY*/
 
-/*DODAWANIE GRUPY*/
-#submit_nowa_grupa{float:left; display:block; margin-right:auto; margin-left: 30%; margin-top: 5% }
-#anuluj_btn{float:left; display:block; margin-right:auto;margin-top: 5%  }
+#new_nazwa_grupy{display:block; position:relative;}
+#komunikat_label{float:left; display:block; margin-top: 5%; color:#d22133; width:500px; font:10px Comic Sans MS; }
 
 .grupa_class{
     float:left;
@@ -185,13 +184,7 @@ ul{list-style-type:none;}
     position:relative;
     margin-top:5%;
 }
-.buttons{
-    color:white;
-    font-style: bold;
-    font: Comic Sans MS;
-    background-color:#a0b7b0;
-    
-}
+
 #output{float:left;display:block;  margin-top:5%; margin-left:10%}
 #chosen_pic{float:left;display:block; margin-top: 5%; margin-left:10%}
 
@@ -200,16 +193,11 @@ ul{list-style-type:none;}
 #anuluj_btn{float:left; display:block; margin-right:auto;margin-top: 5%  }
 #dodaj_czlonkow{float:left; display:block; margin-right:auto;margin-top: 5% }
 #usun_czlonkow{float:left; display:block; margin-right:auto;margin-top: 5% }
-.grupa_class{
-    float:left;
-    display:block; 
-    position:relative;
-    margin-top:5%;
-}
+
 .buttons{
     float:left;
     display:block; 
-    margin-top:10%;
+    margin-top:5%;
     color:white;
     font-style: bold;
     font: Comic Sans MS;
