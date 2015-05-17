@@ -22,21 +22,50 @@
     }
 }
 
+public function close(){
+
+       $adres_ip_serwera_mysql = '127.0.0.1';
+       $nazwa_bazy_danych = 'app';
+       $login_bazy_danych = 'root';
+       $haslo_bazy_danych = '';   
+
+        mysql_close(mysql_connect($adres_ip_serwera_mysql, $login_bazy_danych,$haslo_bazy_danych)); 
+}
+
+public function wyswietlNazwe(){
+        $nazwaListy = mysql_query("SELECT nameList FROM lists WHERE dateList=(SELECT max(dateList) FROM lists) AND idList=(SELECT max(idList) FROM lists)");
+        $r = mysql_fetch_assoc($nazwaListy);
+        echo '<h2><center><b>'.$r['nameList'].'</b></center></h2>';
+        self::close();
+}
+
+public function zmienNazwe(){
+    if (isset($_POST['zmiana'])) {
+      $nameList = $_POST['nowaNazwaListy'];
+
+      $sql = @mysql_query("UPDATE lists SET nameList='$nameList' WHERE dateList=(SELECT max(dateList) FROM lists) AND idList=(SELECT max(idList) FROM lists)");
+
+      if($sql){
+        echo '<meta http-equiv="refresh" content="1" />';
+      }
+      self::close();
+    }
+}
+
+
 public function dodajListe(){
-    if (isset($_POST['dodaj'])) {
+    if (isset($_POST['dodajListe'])) {
 
         $name = $_POST['nameList'];
         $data=date(DATE_ATOM);
-
+        
         // dodajemy rekord do bazy z bieżącą datą
-        $sql = @mysql_query("INSERT INTO lists VALUES(nameList='$name',dateList='$data')");
+        $sql = @mysql_query("INSERT INTO lists SET nameList='$name',dateList='$data'");
            
-        if($sql) 
-            header('Location: mojelisty.php');
-            else
-                echo "Błąd";
-
-          //  mysql_close(mysql_connect($adres_ip_serwera_mysql, $login_bazy_danych,$haslo_bazy_danych));
+        if($sql){
+        echo '<meta http-equiv="refresh" content="1" />';
+      }
+        self::close();
         }
     }
 
@@ -48,15 +77,15 @@ public function dodajListe(){
         $note = $_POST['notatka'];
         $priority = $_POST['priorytet'];
 
-                        // dodajemy rekord do bazy 
-        $sql = @mysql_query("INSERT INTO items SET name='$name', price='$price',quantity='$quantity',note='$note', priority='$priority'");
+        // dodajemy rekord do bazy 
+        $sql = @mysql_query("INSERT INTO items SET name='$name', price='$price',quantity='$quantity',note='$note',
+         priority='$priority', idList=(SELECT idList FROM lists WHERE dateList=(SELECT max(dateList) FROM lists) AND idList=(SELECT max(idList) FROM lists)) ");
+
+        if($sql){
+        echo '<meta http-equiv="refresh" content="1" />';
+      }
                
-        /*  if($sql)
-            header('Location: glowna.php');
-               else
-                echo "błąd";
-        */
-           // mysql_close(mysql_connect($adres_ip_serwera_mysql, $login_bazy_danych,$haslo_bazy_danych));
+        self::close();
         }
     }
 
@@ -64,13 +93,27 @@ public function dodajListe(){
        if (isset($_POST['sortuj'])) {
        
         $ins = @mysql_query("SELECT * FROM items ORDER BY priority");
-    }
-}
+
+        if($ins){
+        echo '<meta http-equiv="refresh" content="1" />';
+      }
+        
+        self::close();
+      }
+    } 
 
 public function usun(){
    if (isset($_POST['usunListe'])) {
 
     $ins = @mysql_query("DELETE FROM items");
-}
-}
+
+    if($ins){
+        echo '<meta http-equiv="refresh" content="1" />';
+      }
+    
+    self::close();
+    }
+  }
+
+
 }
