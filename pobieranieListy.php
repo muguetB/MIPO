@@ -2,6 +2,7 @@
 class Lista{
 
     public function filldiv() {
+        $login = $_SESSION['login']; 
         $servername = "127.0.0.1";
         $username = "root";
         $password = "";
@@ -12,7 +13,7 @@ class Lista{
         or die('Nie mogę połączyć się z bazą danych');
 
         $loopResult = '';
-        $wynik = mysql_query("SELECT nameList,udostepnione FROM lists")
+        $wynik = mysql_query("SELECT idList, nameList,udostepnione FROM lists WHERE idUser=(SELECT idUser FROM users WHERE login='$login')")
         or die('Błąd zapytania');
 
         if (mysql_num_rows($wynik) > 0) {
@@ -34,22 +35,59 @@ class Lista{
                 </tr>
                 <tr class="column3">
                 <td>
-                <form name="edytujListe" action="#" method="post">
-                <img class="img2" src="images/icon2.gif" type="submit" name="edytowanie"/>
-                </form>     
-                </td>
-                </tr>
-                <tr class="column4">
-                <td>
-                <form name="usunListe" action="#" method="post">
-                <img class="img1" src="images/icon1.gif" type="submit" name="usuwanie"/>
-                </form>   
+                <input class="edytowanie" id="'.$r['idList'].'" src="images/icon2.gif" type="image" />    
                 </td>
                 </tr>
                 ';
             }
             echo $loopResult;
             echo '</table>';
+        }
+    }
+
+    public function usunListe(){
+          if(isset($_POST['usunTo'])){
+              if(isset($_POST['idListy'])){
+                $idListy = $_POST['idListy'];
+                //echo $idListy;
+                $sqlUpdate = "DELETE FROM lists WHERE idList='$idListy'"; 
+                if (mysql_query($sqlUpdate)) {
+                  // echo "usunieto";
+               } 
+               else {
+                   echo "Error updating record: " . $conn->error;
+               }
+           }
+       }
+    }
+
+    public function edytujNazwe(){
+        if(isset($_POST['zapisz'])){
+         $idListy = $_POST['idListy'];
+         $nameG = $_POST['nowaNazwa'];
+         $sqlUpdate = "UPDATE lists SET nameList='$nameG' WHERE idList='$idListy'";
+         
+         if (mysql_query($sqlUpdate)) {
+            echo '<meta http-equiv="refresh" content="1" />';
+         }
+          else {
+         echo "Error updating record: " . $conn->error;
+         }
+         }
+    }
+
+    public function zmianaListy(){
+        if(isset($_POST['edytujProdukty'])){
+            if(isset($_POST['idListy'])){
+                $idListy = $_POST['idListy'];
+                $nowyNumer = mysql_query("SELECT MAX(idList) FROM lists");
+                echo $nowyNumer;
+                $sql = "UPDATE lists SET idList='$nowyNumer' WHERE idList='$idListy'";
+                $sql2 = "UPDATE items SET idList='$nowyNumer' WHERE idList='$idListy'";
+                if(mysql_query($sql)){
+                    //header("Location: glowna.php");
+                }
+            }
         }
     }
 

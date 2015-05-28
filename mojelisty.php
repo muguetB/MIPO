@@ -39,6 +39,29 @@ $(document).ready(function() {
         });
 </script> 
 
+
+<script>
+$(document).ready(function() {
+    $(function() {
+        $("#dialog2").dialog({
+            autoOpen: false
+        });
+        $(".edytowanie").on("click", function() {
+         $("#dialog2").dialog("open");
+         var id = $(this).attr('id');
+         var elem  = document.getElementById("idListy");
+         elem.value = id;
+    //$.post('ajax/delete.php', { id: id } function(data) {
+    });
+    });
+// Validating Form Fields.....
+$("#submit").click(function(e) {
+    alert("Zapisano zmiany!");
+});
+});
+
+</script> 
+
 <script>
 var loadFile = function(event) {
     var output = document.getElementById('output');
@@ -46,22 +69,32 @@ var loadFile = function(event) {
     output.src = URL.createObjectURL(event.target.files[0]);
 };
 </script>
+
 <body>
  <div class="container">
     <div class="main">
         <div id="dialog" title="Nowa lista">
             <form action="" method="post">
                 <input class="grupa_class" id="nazwa_listy" placeholder="Nazwa listy" name="nameList" type="text" required>
-                <button id="button" type="submit" name="dodaj">Dodaj</button>
-                <button class="buttons" id="anuluj_btn" type="button">Anuluj</button> 
+                <button id="button" type="submit" name="dodajListe">Dodaj</button>
             </form>
+        </div>
+
+        <div id="dialog2" title="Edytuj">
+            <form id="formEdycja" action="#" method="post">
+             <input name = "idListy" id="idListy" type="hidden" />
+             <input id="new_nazwa_grupy" placeholder="Nowa nazwa listy" name="nowaNazwa" type="text">
+             <input class="buttons" id="usun_btn" type="submit" name="zapisz" value="Zapisz zmiany"/> 
+             <input class="buttons" id="usun_btn" type="submit" name="usunTo" value="Usun"/> 
+             <input class="buttons" id="usun_btn" type="submit" name="edytujProdukty" value="Edytuj listę"/> 
+             </form>
         </div>
 
  
         <div id="topPan"><a href="#"><img src="images/logo.gif" title="Green Solutions" alt="Green Solutions" /></a>
             <div id="topPanMenu">
                 <img src="images/photo.gif"/>
-                <p><a class="link2" href="#">Moje konto</a>    <a class="link2" href="#">Wyloguj</a></p>
+                <p><a class="/link2" href="#">Moje konto</a>    <a class="link2" href="#">Wyloguj</a></p>
                 <ul>
                     <li><a class="link1" href="glowna.php">Lista zakupów</a></li>
                     <li><a class="link1" href="mojeGrupy.php">Moje grupy</a></li>
@@ -73,10 +106,10 @@ var loadFile = function(event) {
                 <div id="leftPan">
                     <div id="nowaLista">
                         <h2><center>Nowa lista</center></h2>
-                        <a id="opener" href="#">&nbsp;</a> </div>
+                        <a id="opener" href="#"></a> </div>
                         <div id="mojeListy">
                             <h2><center>Moje listy</center></h2>
-                            <a href="mojelisty.php">&nbsp;</a> </div>
+                            <a href="mojelisty.php"></a> </div>
                         </div>
                     </div>
                     <div id="rightPan">
@@ -84,7 +117,10 @@ var loadFile = function(event) {
                            <?php
                            require("pobieranieListy.php");
                            $j = new Lista();
-                           $j->filldiv()
+                           $j->filldiv();
+                           $j->usunListe();
+                           $j->edytujNazwe();
+                           $j->zmianaListy();
                            ?>
                            <div class="sum">
                             <ol>

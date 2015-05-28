@@ -7,6 +7,17 @@ if (!isset($_SESSION['zalogowany'])) {
     include('zbior.php');
     exit();
 }
+include('dodawanie.php');
+$dodawanie = new Dodawanie();
+$dodawanie -> dodajProdukt();
+$dodawanie -> sortuj();
+$dodawanie -> usun();
+$dodawanie -> dodajListe();
+//$dodawanie -> zmienNazwe();
+include("pomocnicza.php");
+$j = new Jakas(); 
+$j -> edytuj();
+$j -> usun();
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -45,13 +56,32 @@ $(document).ready(function() {
         $("#zmienNazwe").dialog({
             autoOpen: false
         });
-        $("#zmien").on("click", function() {
+        $("#openerZmiana").on("click", function() {
             $("#zmienNazwe").dialog("open");
         });
     });
           $("#submit").click(function(e) {
+                alert("Zmieniono nazwę!");
+            });    
+        });
+</script> 
 
-                alert("");
+<script>
+$(document).ready(function() {
+    $(function() {
+        $("#grupy").dialog({
+            autoOpen: false
+        });
+        $("#openerUdostepnij").on("click", function() {
+            $("#grupy").dialog("open");
+        });
+         $( "#grupy" ).dialog({
+            width: 200
+        });
+    });
+          $("#submit").click(function(e) {
+
+                alert("Dodano grupę!");
             });    
         });
 </script> 
@@ -82,6 +112,28 @@ $(document).ready(function() {
 </script> 
 
 <script>
+$(document).ready(function() {
+    $(function() {
+        $("#dialog2").dialog({
+            autoOpen: false
+        });
+        $(".img2").on("click", function() {
+         $("#dialog2").dialog("open");
+         var id = $(this).attr('id');
+         var elem  = document.getElementById("hiddenId");
+         elem.value = id;
+    //$.post('ajax/delete.php', { id: id } function(data) {
+    });
+    });
+// Validating Form Fields.....
+$("#submit").click(function(e) {
+    alert("Zapisano zmiany!");
+});
+});
+
+</script> 
+
+<script>
 var loadFile = function(event) {
     var output = document.getElementById('output');
     output.scr = null;
@@ -102,18 +154,39 @@ function closeDialog() {
     <div class="container">
         <div class="main">
             <div id="dialog" title="Nowa lista">
-            <form action="#" method="post">
-                <input class="grupa_class" id="nazwa_listy" placeholder="Nazwa listy" name="nameList" type="text" required>
-                <button id="button" type="submit" name="dodajListe">Dodaj</button>
-            </form>
-        </div>
+                <form action="#" method="post">
+                    <input class="grupa_class" id="nazwa_listy" placeholder="Nazwa listy" name="nameList" type="text" required>
+                    <button id="button" type="submit" name="dodajListe">Dodaj</button>
+                </form>
+            </div>
 
             <div id="zmienNazwe" title="Zmiana nazwy listy">
                 <form action="#" method="post">
-                    <input class="inputs" id="zmianaNazw/e" name="nowaNazwaListy" placeholder="Nazwa listy" type="text" required>
-                    <button id="button" type="submit" name="zmiana">Zmien</button>
+                    <input class="inputs" id="zmianaNazwe" name="nowaNazwaListy" placeholder="Nazwa listy" type="text" required>
+                    <button id="button" type="submit" name="zapisz">Zmien</button>
                 </form>
             </div>
+
+            <div id="grupy" title="Udostępnij">
+                <form action="#" method="post">
+                    <?php
+                    $j -> wyswietlGrupy();
+                    ?>
+                    <br>
+                    <button id="button" type="submit" name="share">Udostępnij!</button>
+                </form>
+            </div>
+
+        <div id="dialog2" title="Edytuj">
+            <form id="formEdycja" action="#" method="post">
+             <input name = "idUsuwanego" id="hiddenId" type="hidden" />
+             <?php
+                $j -> utworzFormularz();
+             ?>
+             <input class="buttons" id="usun_btn" type="submit" name="zapisz" value="Zapisz zmiany"/> 
+             <input class="buttons" id="usun_btn" type="submit" name="usunTo" value="Usun"/> 
+             </form>
+        </div>
 
             <div id="dodawanieProduktu" title="Dodaj produkt">
                 <form name="dodajProdukt" id="dodajProdukt" action="#" method="post">
@@ -159,39 +232,27 @@ function closeDialog() {
 
                                 <h2> Lista zakupów</h2>
                                 
-                                <div class="podziel">
-                                    <ol>
-                                        <li><a href="#">PODZIEL SIĘ LISTĄ</a>
-                                            <ul>
-                                                <li><a href="#" name="info"> <img src="images/icon3.gif"/>Dom</a></li>
-                                                <li><a href="#" name="info"> <img src="images/icon3.gif"/>Biuro</a></li>
-                                                <li><a href="#"> <img src="images/icon4.gif"/>Gosia L</a></li>
-                                                <li><a href="#"> <img src="images/icon4.gif"/>Ewelina B</a></li>
-                                                <li><a href="#"> <img src="images/icon4.gif"/>Aleksander T</a></li>
-                                            </ul>
-                                        </li>
-                                    </ol>
-                                </div>
-                                 <div id="zmien">
-                                    <h2><center>Zmień nazwę</center></h2>
-                                    <a href="#"></a> 
-                                </div> 
-                                <form method="post">
+                                <div id="udostepnij">
+                                <h2><center>Udostępnij</center></h2>
+                                <a id="openerUdostepnij" href="#"></a> </div>
+
+                                <div id="zmien">
+                                <h2><center>Zmień nazwę</center></h2>
+                                <a id="openerZmiana" href="#"></a> </div>
+                                 
+                                <form class="menu" method="post">
                                     <input id="usun" type="submit" name="usunListe" value="Usuń listę" onClick="confirm('Czy na pewno usunąć listę?')">
-                                </form> 
-                                <form method="post">
-                                    <input id="kopiuj" type="submit" name="kopiuj" value="Kopiuj listę">
-                                </form> 
-                                <form method="post">
+                                </form>    
+                                <form class="menu" method="post">
                                     <input id="sortuj" type="submit" name="sortuj" value="Sortuj">
                                 </form> 
                                 </div>
                             </div>
                                         <div id="rightPan">
                                             <div id="rightbodyPan">
-                                                <?php  include('dodawanie.php');
-                                                        $dodawanie = new Dodawanie();
-                                                        $dodawanie -> wyswietlNazwe(); ?>
+                                                <?php   
+                                                    $dodawanie -> wyswietlNazwe();
+                                                ?>
                                                 <h4>
                                                     <div class="b1">
                                                         <h2 id="dodajP"> Nowy produkt</h2>
@@ -199,10 +260,9 @@ function closeDialog() {
                                                     </div>
 
                                                 </h4>
-                                                <?php
-                                                include("pomocnicza.php");
-                                                $j = new Jakas();                                                
-                                                $j->filldiv()
+                                                <?php 
+                                                $lista = new Jakas();
+                                                $lista->filldiv() 
                                                 ?>
                                                 <div class="sum">
                                                     <h2 class="s1"> Suma: </h2>
@@ -215,11 +275,4 @@ function closeDialog() {
                                 </div>
                             </div>
                         </body>
-                        <?php
-                        $dodawanie -> dodajProdukt();
-                        $dodawanie -> sortuj();
-                        $dodawanie -> usun();
-                        $dodawanie -> dodajListe();
-                        $j -> usunPozycje();
-                        ?>
-                        </html>
+                    </html>
