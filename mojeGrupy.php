@@ -1,3 +1,14 @@
+<?php
+include('zbior.php');
+$zbior = new Zbior();
+$zbior->wyloguj();
+if (!isset($_SESSION['zalogowany'])) {
+    $_SESSION['komunikat'] = "Nie jestes zalogowany!";
+    include('zbior.php');
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -268,7 +279,13 @@ function closeEdit() {
 <div id="topPan"><a href="#"><img src="images/logo.gif" title="Green Solutions" alt="Green Solutions" /></a>
   <div id="topPanMenu">
       <img src="images/photo.gif"/>
-      <p><a class="link2" href="#">Moje konto</a>    <a class="link2" href="#">Wyloguj</a></p>
+        <div class="konto">
+                        <form method="post">
+                            <a class="link2" href="zarzadzanieKontem.php">Moje konto</a>  
+                            <input class="link2" id="wyloguj_btn" type="submit"  value="Wyloguj" name="wyloguj"/>
+
+                        </form>
+                    </div>
     <ul>
         <li><a class="link1" href="glowna.php">Lista zakupów</a></li>
         <li><a class="link1" href="#">Moje grupy</a></li>
@@ -277,7 +294,7 @@ function closeEdit() {
 </div>
 <div id="headerPan">
   <div id="headerPanleft">
-    <div id="nowaLista">
+    <div id="nowaGrupa">
         <h2>Nowa grupa</h2>
         <a id="opener" href="#">&nbsp;</a> </div>
 </div>
@@ -298,6 +315,7 @@ function closeEdit() {
  <?php
   class Jakas{
  public function filldiv() {
+        $login = $_SESSION['login']; 
         $servername = "127.0.0.1";
         $username = "root";
         $password = "";
@@ -308,7 +326,7 @@ function closeEdit() {
                 or die('Nie mogę połączyć się z bazą danych');
 
         $loopResult = '';
-        $wynik = mysql_query("SELECT groupName,groupPhoto,idGroup FROM groups")
+        $wynik = mysql_query("SELECT groupName,groupPhoto,idGroup FROM groups WHERE idGroup=(SELECT idGroup FROM groupmembers WHERE userLogin='$login')")
                 or die('Błąd zapytania');
 
         

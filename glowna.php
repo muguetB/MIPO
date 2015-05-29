@@ -13,7 +13,7 @@ $dodawanie -> dodajProdukt();
 $dodawanie -> sortuj();
 $dodawanie -> usun();
 $dodawanie -> dodajListe();
-//$dodawanie -> zmienNazwe();
+$dodawanie -> zmienNazwe();
 include("pomocnicza.php");
 $j = new Jakas(); 
 $j -> edytuj();
@@ -163,7 +163,7 @@ function closeDialog() {
             <div id="zmienNazwe" title="Zmiana nazwy listy">
                 <form action="#" method="post">
                     <input class="inputs" id="zmianaNazwe" name="nowaNazwaListy" placeholder="Nazwa listy" type="text" required>
-                    <button id="button" type="submit" name="zapisz">Zmien</button>
+                    <button id="button" type="submit" name="zapiszNazwe">Zmien</button>
                 </form>
             </div>
 
@@ -183,7 +183,7 @@ function closeDialog() {
              <?php
                 $j -> utworzFormularz();
              ?>
-             <input class="buttons" id="usun_btn" type="submit" name="zapisz" value="Zapisz zmiany"/> 
+             <input class="buttons" id="usun_btn" type="submit" name="zapiszProdukt" value="Zapisz zmiany"/> 
              <input class="buttons" id="usun_btn" type="submit" name="usunTo" value="Usun"/> 
              </form>
         </div>
@@ -251,7 +251,7 @@ function closeDialog() {
                                         <div id="rightPan">
                                             <div id="rightbodyPan">
                                                 <?php   
-                                                    $dodawanie -> wyswietlNazwe();
+                                                   $dodawanie -> wyswietlNazwe();
                                                 ?>
                                                 <h4>
                                                     <div class="b1">

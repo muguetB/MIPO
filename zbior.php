@@ -32,6 +32,7 @@
 
 		function zapomnialem()
 		{
+			
 
 				if(isset($_POST['submit']))
 				{
@@ -42,28 +43,17 @@
 					$danekonta = mysql_query("SELECT password, email, login FROM users WHERE login= '$login' AND email='$email'") or die(mysql_error());
 					$pdanekonta = mysql_fetch_array($danekonta);
 
-					if (strlen($_POST['email']) < 1) 
-					{
-						echo 'Nie wpisałeś adresu e-mail!<br>';
-						exit(0);
-					}
-
-					if (strlen($_POST['login']) < 1) 
-					{
-						echo 'Nie wpisałeś loginu!<br>';
-						exit(0);
-					}
-
 					if ($pdanekonta['login'] == NULL) 
 					{
 						echo 'Nie ma takiego konta!<br>';
-						exit(0);
+						return;
+						
 					}
 
-					if ($pdanekonta['email'] != $email) 
+					elseif ($pdanekonta['email'] != $email) 
 					{
 						echo 'Zły adres e-mail!<br>';
-						exit(0);
+						return;
 					}
 
 					    
@@ -77,6 +67,9 @@
 						mail($to, $subject, $message);
 
 					    echo "<p> Hasło zostało wysłane na e-mail: $email</p>";        
+
+					    
+					
 					  
 				}       
 		}

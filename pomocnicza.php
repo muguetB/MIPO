@@ -26,12 +26,7 @@
 
 public function close(){
 
-       $adres_ip_serwera_mysql = '127.0.0.1';
-       $nazwa_bazy_danych = 'app';
-       $login_bazy_danych = 'root';
-       $haslo_bazy_danych = '';   
-
-        mysql_close(mysql_connect($adres_ip_serwera_mysql, $login_bazy_danych,$haslo_bazy_danych)); 
+       
 }
 
     public function filldiv() {   
@@ -89,27 +84,28 @@ public function close(){
     }
 
    public function utworzFormularz(){
-    $numer = $_POST['idUsuwanego'];
+  //  $numer = $_POST['idUsuwanego'];
     //echo $numer;
-    $wynik = mysql_query("SELECT name,price,quantity,priority,note FROM items WHERE idItem='$numer'");
-    $r = mysql_fetch_array($wynik);
+   // $wynik = mysql_query("SELECT name,price,quantity,priority,note FROM items WHERE idItem='$numer'");
+  //  $r = mysql_fetch_array($wynik);
             echo '
-            <input class="inputs" type="text" placeholder="nazwa" name="nazwa" value="'.$r['name'].'"/>
-            <input class="inputs" type="text" required=required placeholder="ilosc" name="ilosc" value="'.$r['quantity'].'"/>
-            <input class="inputs" type="text" placeholder="cena" name="cena" value="'.$r['price'].'"/>
+            <input class="inputs" type="text" placeholder="nazwa" name="nazwa" />
+            <input class="inputs" type="text" required=required placeholder="ilosc" name="ilosc" />
+            <input class="inputs" type="text" placeholder="cena" name="cena" />
             <p class="inputs">Priorytet</p>
-            <input type="radio" name="priorytet" value="tak" checked>Tak<input type="radio" name="priorytet" value="'.$r['priority'].'">Nie
-            <input id="notatka" type="text" placeholder="notatka" name="notatka"note value="'.$r['note'].'"/>                
+           <input type="radio" name="priorytet" value="tak" checked/>Tak<input type="radio" name="priorytet" />Nie
+            <input id="notatka" type="text" placeholder="notatka" name="notatka"note "/>                
             ';
    }
 
    public function usun(){
         if(isset($_POST['usunTo'])){
+          echo 'hej2';
               if(isset($_POST['idUsuwanego'])){
                 $idItem = $_POST['idUsuwanego'];
                 $sqlUpdate = "DELETE FROM items WHERE idItem='$idItem'"; 
                 if (mysql_query($sqlUpdate)) {
-                  // echo "czyżby się udało?";
+                   echo '<meta http-equiv="refresh" content="1" />';
                } 
                else {
                    echo "Error updating record: " . $conn->error;
@@ -120,8 +116,8 @@ public function close(){
    }
 
    public function edytuj(){ 
-    if(isset($_POST['zapisz'])){
-     if(isset($_POST['idUsuwanego'])){
+    if(isset($_POST['idUsuwanego'])){
+      if(isset($_POST['zapiszProdukt'])){
          $numer = $_POST['idUsuwanego'];
          $name = $_POST['nazwa'];
          $price = $_POST['cena'];
@@ -129,8 +125,24 @@ public function close(){
          $note = $_POST['notatka'];
          $priority = $_POST['priorytet'];
 
-         $sqlUpdate = "UPDATE items SET name='$name', price='$price',quantity='$quantity',note='$note',
-                priority='$priority' WHERE idItem='$numer'";      
+          $wynik = mysql_query("SELECT name,price,quantity,priority,note FROM items WHERE idItem='$numer'");
+          $r = mysql_fetch_array($wynik);
+
+          if($name==null){
+            $name=$r['name'];
+          }
+          if($price==null){
+            $price=$r['price'];
+          }
+          if($quantity==null){
+            $quantity=$r['quantity'];
+          }
+         $sqlUpdate = mysql_query("UPDATE items SET name='$name', price='$price',quantity='$quantity',note='$note',
+                priority='$priority' WHERE idItem='$numer'");      
+      }
+
+      if($sqlUpdate){
+         echo '<meta http-equiv="refresh" content="1" />';
       }
     }
     self::close();
@@ -138,10 +150,11 @@ public function close(){
 
 
 public function wyswietlGrupy(){
-    $nazwa;
     $login = $_SESSION['login'];
 
     $sql = mysql_query("SELECT groupName FROM groups");
+    if($sql ===false)
+      echo mysql_error();
    
    // $sql = mysql_query("SELECT groupName FROM groups WHERE idGroup=(SELECT idGroup FROM groupmembers WHERE userLogin='$login')");
         if (mysql_num_rows($sql) > 0) {
@@ -162,12 +175,7 @@ public function wyswietlGrupy(){
         {
       //echo($aDoor[$i] . " ");
         $nazwa = $aDoor[$i];
-         $sql = @mysql_query("INSERT INTO groupmembers SET idGroup=(SELECT idGroup FROM groups WHERE groupName='$nazwa'), userLogin='$login'");
-
-        if($sql){
-           echo '<meta http-equiv="refresh" content="1" />';
-        }
-
+     
         $sql2 = @mysql_query("INSERT INTO grouplists SET idGroup=(SELECT idGroup FROM groups WHERE groupName='$nazwa'), 
             idList=(SELECT idList FROM lists WHERE dateList=(SELECT max(dateList) FROM lists) AND idList=(SELECT max(idList) FROM lists)) ");
         if($sql2){

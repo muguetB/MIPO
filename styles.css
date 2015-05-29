@@ -75,17 +75,14 @@ img.center{display: block; margin-left: auto; margin-right: auto;}
 
 
 /*STRONA ZAPOMNIALEM HASLA*/
-#resetujPanel{width:550px; height:250px; display:block;  position:relative; margin-left:auto; margin-right:auto;   padding:0; border:2px solid #696969; background:#fff; color:#000;}
+#resetujPanel{width:550px; height:265px; display:block;  position:relative; margin-left:auto; margin-right:auto;   padding:0; border:2px solid #696969; background:#fff; color:#000;}
 #resetujPanel h2{display:block; position:relative; text-align: center;   top:5%; font:20px Comic Sans MS,Georgia, Times, serif; text-transform:uppercase;}
 #resetujPanel label{width:100px; position:relative; display:block; float:left; margin-top:5%; margin-left: 15% }
 #input_mail_resetowanie{float:left; display:block; width:200px; height:16px;  margin-top:5%; margin-left: 0%;}
 #input_login_resetowanie{float:left; display:block; width:200px; height:16px;  margin-top:5%; margin-left: 0% }
-#resetuj_haslo_btn{float:left; display:block; width:190px; height:30px; margin-left:33%; margin-top:5%; background-color:#5EA000; color:white}
-#powroty3{display:block; margin-top:30%;}
+#resetuj_haslo_btn{float:left; display:block; width:190px; height:30px; margin-left:33%; margin-top:2%; background-color:#5EA000; color:white}
+#powroty3{display:block; margin-top:9%;}
 #powroty3 p{text-align: center; margin-top:5%;}
 #powroty3 a{display:block; margin-left:38%; margin-right:auto;}
-#blad 
-{
-
-	color: red;
-}
+#blad {color: red;}
+#komunikat{left:0px; top:0px; color:red; padding-top: 20%; padding-left:33%;} 

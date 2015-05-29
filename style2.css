@@ -39,6 +39,11 @@ ul{list-style-type:none;}
 #nowaLista p{width:103px; height:10px; display:block; position:absolute; font:10px/12px "Trebuchet MS",Arial, Helvetica, sans-serif; color:#2E5000; background:#fff; margin:34px 0 0 81px; z-index:1; }
 #nowaLista a{text-decoration:none; display:block; width:237px; height:62px;}
 
+#nowaGrupa{float:left; width:237px; height:64px; position:relative; margin:4px 0 0 57px; background:url(images/icon1.png) 0 0 no-repeat;}
+#nowaGrupa h2{width:90px; height:10px; background:#a0b7b0; display:block; position:absolute; left:0px; top:0px; margin:14px 0 5px 81px; font:16px/14px Georgia, "Times New Roman", Times, serif; color:#000000; z-index:1; text-transform:uppercase;}
+#nowaGrupa p{width:103px; height:10px; display:block; position:absolute; font:10px/12px "Trebuchet MS",Arial, Helvetica, sans-serif; color:#2E5000; background:#fff; margin:34px 0 0 81px; z-index:1; }
+#nowaGrupa a{text-decoration:none; display:block; width:237px; height:62px;}
+
 #mojeListy{float:left; width:237px; height:102px; position:relative; margin:13px 0 0 0; background:url(images/icon2-nor.gif) 0 0 no-repeat;}
 #mojeListy h2{width:90px; height:10px; background:#a0b7b0; display:block; position:absolute; left:0px; top:0px; margin:14px 0 5px 81px; font:16px/14px Georgia, "Times New Roman", Times, serif; color:#000000; z-index:1; text-transform:uppercase;}
 #mojeListy p{width:103px; height:10px; display:block; position:absolute; font:10px/12px "Trebuchet MS",Arial, Helvetica, sans-serif; color:#2E5000; background:#fff; margin:34px 0 0 81px; z-index:1; }
@@ -67,6 +72,9 @@ ul{list-style-type:none;}
 #zmien h2{width:90px; height:10px; background:#a0b7b0; display:block; position:absolute; left:0px; top:0px; margin:14px 0 5px 81px; font:16px/14px Georgia, "Times New Roman", Times, serif; color:#000000; z-index:1; text-transform:uppercase;}
 #zmien p{width:103px; height:10px; display:block; position:absolute; font:10px/12px "Trebuchet MS",Arial, Helvetica, sans-serif; color:#2E5000; background:#fff; margin:34px 0 0 81px; z-index:1; }
 #zmien a{text-decoration:none; display:block; width:237px; height:62px;}
+
+#leftPan2 #usun h2{width:90px; height:10px; background:#a0b7b0; display:block; position:absolute; left:0px; top:0px; margin:14px 0 5px 81px; font:16px/14px Georgia, "Times New Roman", Times, serif; color:#000000; z-index:1; text-transform:uppercase;}
+#headerPan #zmienZdjecie {float:left; width:237px; height:48px; position:relative; margin:13px 0 0 0; background:url(images/icon6-nor.gif) 0 0 no-repeat; font:16px/14px Georgia, "Times New Roman", Times, serif; color:#000000; z-index:1; text-transform:uppercase;}
 
 #headerPan #usun{ float:left; width:237px; height:48px; position:relative; margin:13px 0 0 0; background:url(images/icon6-nor.gif) 0 0 no-repeat; font:16px/14px Georgia, "Times New Roman", Times, serif; color:#000000; z-index:1; text-transform:uppercase;}
 

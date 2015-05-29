@@ -13,7 +13,7 @@ class Lista{
         or die('Nie mogę połączyć się z bazą danych');
 
         $loopResult = '';
-        $wynik = mysql_query("SELECT idList, nameList,udostepnione FROM lists WHERE idUser=(SELECT idUser FROM users WHERE login='$login')")
+        $wynik = mysql_query("SELECT idList, nameList,udostepnione FROM lists WHERE idUser=(SELECT idUser FROM users WHERE login='$login') ")
         or die('Błąd zapytania');
 
         if (mysql_num_rows($wynik) > 0) {
@@ -77,16 +77,19 @@ class Lista{
     }
 
     public function zmianaListy(){
+
         if(isset($_POST['edytujProdukty'])){
             if(isset($_POST['idListy'])){
                 $idListy = $_POST['idListy'];
-                $nowyNumer = mysql_query("SELECT MAX(idList) FROM lists");
-                echo $nowyNumer;
-                $sql = "UPDATE lists SET idList='$nowyNumer' WHERE idList='$idListy'";
-                $sql2 = "UPDATE items SET idList='$nowyNumer' WHERE idList='$idListy'";
-                if(mysql_query($sql)){
-                    //header("Location: glowna.php");
-                }
+                $temp = mysql_query("SELECT MAX(idList) FROM lists");
+                $temp2 = mysql_result( $temp, 0) ;
+
+                 $date = mysql_query("SELECT MAX(dateList) FROM lists");
+                $date2 = mysql_result( $date,0) ;
+                
+                $sql = mysql_query("UPDATE lists SET idList=$temp2+1, dateList='$date2' WHERE idList='$idListy'");
+                $sql2 = mysql_query("UPDATE items SET idList=$temp2+1, dateList='$date2' WHERE idList='$idListy'");
+              
             }
         }
     }

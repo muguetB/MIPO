@@ -86,15 +86,26 @@ var loadFile = function(event) {
              <input id="new_nazwa_grupy" placeholder="Nowa nazwa listy" name="nowaNazwa" type="text">
              <input class="buttons" id="usun_btn" type="submit" name="zapisz" value="Zapisz zmiany"/> 
              <input class="buttons" id="usun_btn" type="submit" name="usunTo" value="Usun"/> 
-             <input class="buttons" id="usun_btn" type="submit" name="edytujProdukty" value="Edytuj listę"/> 
+             <input class="buttons" id="usun_btn" type="submit" name="edytujProdukty" value="Edytuj listę" onClick="gotoGlowna()"/>
              </form>
         </div>
 
+        <script>
+        function gotoGlowna(){
+            window.location="glowna.php"
+        }
+        </script>
  
         <div id="topPan"><a href="#"><img src="images/logo.gif" title="Green Solutions" alt="Green Solutions" /></a>
             <div id="topPanMenu">
                 <img src="images/photo.gif"/>
-                <p><a class="/link2" href="#">Moje konto</a>    <a class="link2" href="#">Wyloguj</a></p>
+                  <div class="konto">
+                        <form method="post">
+                            <a class="link2" href="zarzadzanieKontem.php">Moje konto</a>  
+                            <input class="link2" id="wyloguj_btn" type="submit"  value="Wyloguj" name="wyloguj"/>
+
+                        </form>
+                    </div>
                 <ul>
                     <li><a class="link1" href="glowna.php">Lista zakupów</a></li>
                     <li><a class="link1" href="mojeGrupy.php">Moje grupy</a></li>

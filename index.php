@@ -32,13 +32,6 @@
     </div> 
 
   </div>
-    
-    
-    <div id="getItOn">
-        <form action="https://play.google.com/store">
-           <input id="google_play_btn" type="submit" value="" />
-       </form>
-  </div>    
 </div>
 <footer id="footerPan">
     <p>Copyright © 2015 MIPO. © MIPO. All right reserved</p>

@@ -44,14 +44,12 @@ include('zbior.php');
                 <div id="leftPan2">
                     <h2> Moje konto</h2>
                     <br/>
-                    <div id="zmien">
-                        <h2>Zmień zdjęcie</h2>
-                        <a href="#">&nbsp;</a> </div>
-                    <div id="usun">
-                        <form method="post">
-                        <h2>Usuń konto</h2>
-                        <input type="submit" name="usunGo">
-                        </form> </div>
+                     <form class="menu" method="post">
+                         <input id="zmienZdjecie" type="submit" name="zmienZdjecie" value="Zmień zdjęcie">
+                    </form> 
+                    <form class="menu" method="post">
+                         <input id="usun" type="submit" name="usunGo" value="Usuń konto" onClick="confirm('Czy na pewno chcesz usunąć konto?')">
+                    </form> 
                 </div>
             </div>
             <div id="rightPan2">

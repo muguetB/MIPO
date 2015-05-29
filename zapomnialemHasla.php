@@ -1,3 +1,9 @@
+ <?php
+    include('zbior.php');
+    $zbior = new Zbior();
+    $zbior -> connect();
+    ?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -19,6 +25,8 @@
         <input id="input_login_resetowanie"  type="text" required=required name="login" />  
         <label id="mail_resetowanie" >Adres email</label>
         <input id="input_mail_resetowanie"  type="email" placeholder="nazwa@domena.com" required=required name="email" />  
+        <div id="komunikat"> <?php $zbior -> zapomnialem(); ?>
+        </div>
         <input id="resetuj_haslo_btn" type="submit" name="submit" value="Resetuj hasło"/>
     </form>
    <div id="powroty3">
@@ -28,12 +36,6 @@
    </div>
   </div>
 </div>
-    <?php
-    include('zbior.php');
-    $zbior = new Zbior();
-    $zbior -> connect();
-    $zbior -> zapomnialem();
-    ?>
 <footer id="footerPan">
     <p>Copyright © 2015 MIPO. © MIPO. All right reserved</p>
   </footer>
