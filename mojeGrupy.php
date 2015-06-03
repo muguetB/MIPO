@@ -13,7 +13,7 @@ if (!isset($_SESSION['zalogowany'])) {
 <html>
 <head>
 <meta charset="utf-8">
-<title>Myd艂o i Powid艂o</title>
+<title>Myd艂o i powid艂o</title>
 <link href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" rel="stylesheet">
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
@@ -23,7 +23,7 @@ if (!isset($_SESSION['zalogowany'])) {
 
 
 <script> 
-jQuery(document).ready(function($){
+jQuery(document).ready(function(){
     $( "#dodaj_czlonkow_grupy" ).autocomplete({
       source: "suggestions.php"
     });
@@ -47,7 +47,7 @@ alert("Dodano grup臋!");
 });
 });
 
-/*Po naci渘i阠iu przycisku odpalane jest okno dialogowe i pobierane id tego zdj阠ia.
+/*Po naci艙ni锚ciu przycisku odpalane jest okno dialogowe i pobierane id tego zdj锚cia.
  * Potem przekazywane jest do php */
  $(document).ready(function() {
 $(function() {
@@ -58,15 +58,35 @@ $(".editable").on("click", function() {
    $("#dialog2").dialog("open");
    var id = $(this).attr('id');
    var elem  = document.getElementById("hiddenId");
+   var elem2 = document.getElementById("hiddenId2");
    elem.value = id;
-    //$.post('ajax/delete.php', { id: id } function(data) {
+   elem2.value = id;
 });
 });
+
 // Validating Form Fields.....
 $("#submit").click(function(e) {
 alert("Zapisano zmiany!");
 });
 });
+
+
+ $(document).ready(function() {
+$(function() {
+$("#dialog3").dialog({
+autoOpen: false
+});
+$("#dodaj_czlonkow_btn").on("click", function() {
+  closeEdit();
+$("#dialog3").dialog("open");
+});
+});
+
+$("#submit").click(function(e) {
+alert("Dodano grup臋!");
+});
+});
+
 </script> 
 
 
@@ -76,7 +96,7 @@ alert("Zapisano zmiany!");
     var  input = document.getElementById('chosen_pic');
     var file = input.files[0];
     if(file.size > 100000) {  
-       alert("Rozmiar pliku jest za du縴! Wybierz inny");
+       alert("Rozmiar pliku jest za du偶y! Wybierz inny");
     }
     else{
     var output = document.getElementById('output');
@@ -97,13 +117,29 @@ alert("Zapisano zmiany!");
 
       $("input:text[id^='dodaj_czlonkow_grupy']").autocomplete({
       source: "suggestions.php"
-    });
-  
-
-            
+    });          
  }
+
+ function dodaj2()
+{
+    var objTo = document.getElementById('new_input2');
+    var divtest = document.createElement("div");
+    divtest.innerHTML = '<input class="grupa_class" id="dodaj_czlonkow_grupy" placeholder="Dodaj cz艂onk贸w" name="czlonkowie[]" type="text">\n\
+<button id="usun_czlonkow" onClick="usun2()" type="button">Usun</button>';
+    objTo.appendChild(divtest);
+
+      $("input:text[id^='dodaj_czlonkow_grupy']").autocomplete({
+      source: "suggestions.php"
+    });          
+ }
+
 function usun(){
  var elem = document.getElementById("new_input").lastChild;
+ elem.remove();
+}
+
+function usun2(){
+ var elem = document.getElementById("new_input2").lastChild;
  elem.remove();
 }
 
@@ -115,9 +151,14 @@ function closeDialog() {
  var elem = document.getElementById("new_input");
  elem.remove(elem.childNodes);
 
+  var elem2 = document.getElementById("new_input2");
+ elem2.remove(elem2.childNodes);
+
     $("#dialog").dialog("close");
+    $("#dialog3").dialog("close");
     
 } 
+
 
 function closeEdit() { 
  document.getElementById("formEdycja").reset();
@@ -143,113 +184,13 @@ function closeEdit() {
 <body>
     <div class="container">
        <div class="main">
+
        <div id="dialog" title="Nowa grupa">
          <form id="formGrupa"  method="post" enctype="multipart/form-data">
          
          <input class="grupa_class" id="nazwa_grupy" placeholder="Nazwa grupy" name="nazwa_grupy" type="text" required>
            
              <label id="komunikat_label">  
-               <?php
-     $servername = "127.0.0.1";
-     $username = "root";
-     $password = "";
-     $dbname = "app";
-     $sql="";
-     $message = '';
-     
-      mysql_connect($servername, $username, $password);
-      mysql_select_db($dbname);
-      
- /*Obs硊ga edytowania - po klikni阠iu jest uruchamiania odpowiednia funkcja */
-    if(isset($_POST['saveGroup'])){
-        editGroup();
-    }elseif(isset($_POST['deleteGroup'])){
-        deleteGroup();
-    }
-
-    function editGroup()
-        { 
-         if(isset($_POST['hiddenId'])){
-         $groupId = $_POST['hiddenId'];
-         $nameG = $_POST['new_nazwa_grupy'];
-         $sqlUpdate = "UPDATE groups SET groupName='$nameG' WHERE idGroup='$groupId'";
-         
-         if (mysql_query($sqlUpdate)) {
-         echo "Record updated successfully";
-         } else {
-         echo "Error updating record: " . $conn->error;
-         }
-         }
-    }
-    function deleteGroup()
-    {
-       if(isset($_POST['hiddenId'])){
-         $groupId = $_POST['hiddenId'];
-         $sqlUpdate = "DELETE FROM groups WHERE idGroup='$groupId'";
-         
-         if (mysql_query($sqlUpdate)) {
-         echo "Record updated successfully";
-         } else {
-         echo "Error updating record: " . $conn->error;
-         }
-         }
-    }
-
-    
-   //// 
-     if(isset($_POST['submit_nowa_grupa'])){
-
-      $name = $_POST['nazwa_grupy'];
-      $czlonkowie = $_POST['czlonkowie'];
-     
-      $query = mysql_query("SELECT groupName FROM groups WHERE groupName = '". $name."'");
-
-      if (mysql_num_rows($query) != 0){
-           
-       echo " Grupa o podanej nazwie istnieje, sprobuj inna nazwe!";
-      }
-      else{
-      
-       if(isset($_FILES['image']) && $_FILES['image']['size'] > 0){
-
-        $tmpName = $_FILES['image']['tmp_name'];
-        $fp = fopen($tmpName, 'r');
-        $data = fread($fp, filesize($tmpName));
-        $data = addslashes($data);
-        fclose($fp);
-        $sql = "INSERT INTO groups (groupName, groupPhoto)
-        VALUES ('$name','$data')";
-       
-      }
-    else{
-        $sql = "INSERT INTO groups (groupName)
-        VALUES ('$name')";
-    }
-    
-       if (mysql_query($sql)){
-
-          $sql2 = "SELECT idGroup from groups WHERE groupName='$name'";
-          $result= mysql_query($sql2);
-          $groupId = mysql_result($result, 0);
-
-          //dodaje kazdego czlonka grupy do tabeli groupmembers
-          foreach($czlonkowie as $czlonkowie){
-             $sql3 = "INSERT INTO groupmembers VALUES ('$groupId','$czlonkowie' )";
-             mysql_query($sql3);
-           }
-           
-   $message .= ' <div class="message">
-           <p>
-            Dodano grupe!
-            </p>
-          </div>';
-   echo $message;
-          echo '<meta http-equiv="refresh" content="1" />';
- 
-       }       
- }
-}
-   ?>
              </label>
          <div id="new_input">
            <input class="grupa_class" id="dodaj_czlonkow_grupy" placeholder="Dodaj cz艂onk贸w" name="czlonkowie[]" type="text">
@@ -266,13 +207,28 @@ function closeEdit() {
            <div id="dialog2" title="Edytuj">
          <form id="formEdycja" action="mojeGrupy.php" method="post">
              <input name = "hiddenId" id="hiddenId" type="hidden" />
-             <input  id="new_nazwa_grupy" placeholder="Nowa nazwa grupy" name="new_nazwa_grupy" type="text" required>
-             <input class="buttons" id="anuluj_btn2" name="saveGroup" onclick="closeEdit()" type="submit" value="Anuluj"/>
+             <input  id="new_nazwa_grupy" placeholder="Nowa nazwa grupy" name="new_nazwa_grupy" type="text">
+             <input class="buttons" id="anuluj_btn2"  onclick="closeEdit()" type="submit" value="Anuluj"/>
              <input class="buttons" id="zapisz_btn" name="saveGroup"  type="submit" value="Zapisz"/>
              <input class="buttons" id="usun_btn"  type="submit" name="deleteGroup" value="Usun grupe"/> 
+             <input class="buttons" id="dodaj_czlonkow_btn" name="dodaj_czlonkow_btn" value="Dodaj cz艂onk贸w grupy"/> 
+       </form>
+</div>
+
+       <div id="dialog3" title="Dodaj cz艂onk贸w grupy">
+         <form id="formGrupa"  method="post">
+          <input name = "hiddenId2" id="hiddenId2" type="hidden" />
+         <div id="new_input2">
+           <input class="grupa_class" id="dodaj_czlonkow_grupy" placeholder="Dodaj cz艂onk贸w" name="czlonkowie2[]" type="text">
+           </div>
+        <button id="dodaj_czlonkow" onClick="dodaj2()" type="button">Dodaj</button> 
+        <input class="buttons"  name="submit_nowi_czlonkowie" type="submit" value="Dodaj">
+        <button class="buttons" id="anuluj_btn" type="button" onclick="closeDialog()">Anuluj</button> 
        </form>
     </div>
-       </div></div>
+
+    </div>
+       </div>
        
 
  
@@ -311,34 +267,199 @@ function closeEdit() {
     </div>
  </body>
  
+   <?php
+     $servername = "127.0.0.1";
+     $username = "root";
+     $password = "";
+     $dbname = "app";
+     $sql="";
+     //$message = "";
+     $login = $_SESSION['login'];
+     $groupIDglobal;
+     
+      mysql_connect($servername, $username, $password);
+      mysql_select_db($dbname);
+      
+ /*Obs鲁uga edytowania - po klikni锚ciu jest uruchamiania odpowiednia funkcja */
+    if(isset($_POST['saveGroup'])){
+        editGroup();
+    }elseif(isset($_POST['deleteGroup'])){
+        deleteGroup();
+    }
+    elseif(isset($_POST['submit_nowi_czlonkowie'])){
+        addNewUsers();
+    }
+
+
+    function editGroup()
+        { 
+         if(isset($_POST['hiddenId'])){
+          $message = "";
+         $groupId = $_POST['hiddenId'];
+        
+         $nameG = $_POST['new_nazwa_grupy'];
+         $sqlUpdate = "UPDATE groups SET groupName='$nameG' WHERE idGroup='$groupId'";
+         
+         if (mysql_query($sqlUpdate)) {
+          $message .= ' <div class="message">
+           <p>
+           Zmieniono nazw臋!
+            </p>
+           </div>';
+           echo $message;
+         } else {
+         echo "Error updating record: " . $conn->error;
+         }
+
+        
+         echo '<meta http-equiv="refresh" content="1" />';
+    }
+  }
+    function deleteGroup()
+    {
+       if(isset($_POST['hiddenId'])){
+         $message = "";
+         $groupId = $_POST['hiddenId'];
+         $sqlUpdate = "DELETE FROM groups WHERE idGroup='$groupId'";
+         $sqlDeleteUsers = "DELETE FROM groupmembers WHERE idGroup='$groupId'";
+         
+         if (mysql_query($sqlUpdate)&&mysql_query($sqlDeleteUsers)) {
+          $message .= ' <div class="message">
+           <p>
+           Usuni臋to grupe!
+            </p>
+          </div>';
+   echo $message;
+         } else {
+         echo "Error updating record: " . $conn->error;
+         }
+
+        
+          echo '<meta http-equiv="refresh" content="1" />';
+ 
+       
+         }
+    }
+
+       function addNewUsers()
+    {
+        if(isset($_POST['hiddenId2'])){
+          $message = "";
+          $czlonkowie2 = $_POST['czlonkowie2'];
+          $groupId =  $_POST['hiddenId2'];
+         foreach($czlonkowie2 as $czlonkowie){
+             $sqlAddUser = "INSERT INTO groupmembers(idGroup, userLogin) VALUES ('$groupId','$czlonkowie' )";
+             mysql_query($sqlAddUser);
+           }
+          
+         if (mysql_query($sqlAddUser)) {
+          $message .= ' <div class="message">
+           <p>
+           Dodano cz艂onk贸w!
+            </p>
+          </div>';
+   echo $message;
+         } else {
+         echo "Error updating record: " . $conn->error;
+         }
+
+        
+          echo '<meta http-equiv="refresh" content="1" />';
+ 
+       
+         }
+    }
+
+    
+   //// 
+     if(isset($_POST['submit_nowa_grupa'])){
+
+      $name = $_POST['nazwa_grupy'];
+      $czlonkowie = $_POST['czlonkowie'];
+      
+     
+      $query = mysql_query("SELECT groupName FROM groups WHERE groupName = '". $name."'");
+
+      if (mysql_num_rows($query) != 0){
+           
+       echo " Grupa o podanej nazwie istnieje, sprobuj inna nazwe!";
+      }
+      else{
+      
+       if(isset($_FILES['image']) && $_FILES['image']['size'] > 0){
+
+        $tmpName = $_FILES['image']['tmp_name'];
+        $fp = fopen($tmpName, 'r');
+        $data = fread($fp, filesize($tmpName));
+        $data = addslashes($data);
+        fclose($fp);
+        $sql = "INSERT INTO groups (groupName, groupPhoto)
+        VALUES ('$name','$data')";
+       
+      }
+    else{
+        $sql = "INSERT INTO groups (groupName)
+        VALUES ('$name')";
+    }
+    
+       if (mysql_query($sql)){
+          $message = "";
+          $sql2 = "SELECT idGroup from groups WHERE groupName='$name'";
+          $result= mysql_query($sql2);
+          $groupId = mysql_result($result, 0);
+
+          //dodaje kazdego czlonka grupy do tabeli groupmembers
+          foreach($czlonkowie as $czlonkowie2){
+             $sqlAddUser = "INSERT INTO groupmembers(idGroup, userLogin) VALUES ('$groupId','$czlonkowie2' )";
+           
+             mysql_query($sqlAddUser);
+           }
+             $sqlAddMainUser = "INSERT INTO groupmembers(idGroup, userLogin) VALUES ('$groupId','$login')";
+              mysql_query($sqlAddMainUser);
+           
+
+   $message .= ' <div class="message">
+           <p>
+            Dodano grupe!
+            </p>
+          </div>';
+   echo $message;
+          echo '<meta http-equiv="refresh" content="1" />';
+ 
+       }       
+ }
+}
   
- <?php
   class Jakas{
  public function filldiv() {
-        $login = $_SESSION['login']; 
+       
         $servername = "127.0.0.1";
         $username = "root";
         $password = "";
         $dbname = "app";
         $connection = @mysql_connect($servername, $username, $password)
-                or die('Brak po艂膮czenia z serwerem MySQL');
+                or die('Brak po脜鈥毭勨�zenia z serwerem MySQL');
         $db = @mysql_select_db($dbname, $connection)
-                or die('Nie mog臋 po艂膮czy膰 si臋 z baz膮 danych');
-
+                or die('Nie mo偶na po艂膮czy膰 si臋 z baz膮 danych');
+       
+       $login = $_SESSION['login'];
+        
         $loopResult = '';
-        $wynik = mysql_query("SELECT groupName,groupPhoto,idGroup FROM groups WHERE idGroup=(SELECT idGroup FROM groupmembers WHERE userLogin='$login')")
-                or die('B艂膮d zapytania');
+       $wynik = mysql_query("SELECT idGroup, groupName,groupPhoto FROM groups WHERE idGroup IN (SELECT idGroup from groupmembers where userLogin = '$login')")
+               or mysql_error();
+
+    
 
         
-        
-        if (mysql_num_rows($wynik) > 0) {
+        if (mysql_num_rows($wynik) > 0) 
+        {
        //     echo '<table id="tableGroup">';
             while ($r = mysql_fetch_assoc($wynik)) {
                 if($r['groupPhoto'] != NULL){
                 $loopResult .= ' 
                     <div class="divGroup">
                           <label id="addedName">'. $r['groupName'] . '</label>
-                          <input id="'.$r['idGroup'].'" type="image" class="editable" height="40" width="40" src="data:image/jpeg;base64,'.base64_encode( $r['groupPhoto'] ). '"/> 
+                          <input id="'.$r['idGroup'].'" type="image" class="editable" height="70" width="70" src="data:image/jpeg;base64,'.base64_encode( $r['groupPhoto'] ). '"/> 
                 
 </div>   ';
                 }
@@ -346,7 +467,7 @@ function closeEdit() {
                   $loopResult .= ' 
                       <div class="divGroup">
                           <label id="addedName">'. $r['groupName'] . '</label>
-                         <input id="'.$r['idGroup'].'" class="editable" type="image" height="40" width="40" src="images/grupafoto.jpg"/> 
+                         <input id="'.$r['idGroup'].'" class="editable" type="image" height="70" width="70" src="images/grupafoto.jpg"/> 
                            </div> 
         ';   
                 }

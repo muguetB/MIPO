@@ -66,7 +66,7 @@
 						$message = "Hi, your new password is: $haslomd5 ";
 						mail($to, $subject, $message);
 
-					    echo "<p> Hasło zostało wysłane na e-mail: $email</p>";        
+					    echo "<p id=\"komunikat2\"> Hasło zostało wysłane na e-mail: $email</p>";        
 
 					    
 					
@@ -110,7 +110,7 @@
 
 						if(mysql_num_rows($zapytanie) ==0 )
 						{
-							echo "<div id=\"blad\">ZŁE DANE</div>";
+							echo "<div id=\"komunikat\">ZŁE DANE</div>";
 							//exit(0);
 						}
 						else

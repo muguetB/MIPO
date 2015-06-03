@@ -30,23 +30,16 @@ include('zbior.php');
 
                 <ul>
                     <li><a class="link1" href="glowna.php">Lista zakupów</a></li>
-                    <li><a class="link1" href="mojeGrupy.html">Moje grupy</a></li>
+                    <li><a class="link1" href="mojeGrupy.php">Moje grupy</a></li>
                 </ul>
             </div>
         </div>
         <div id="headerPan">
-            <div id="headerPanleft2">
-
-                <img src="images/head.png" height="150" width="150" alt = "glowa"/>
-            </div>
-
+            
             <div id="bodyPan">
                 <div id="leftPan2">
                     <h2> Moje konto</h2>
                     <br/>
-                     <form class="menu" method="post">
-                         <input id="zmienZdjecie" type="submit" name="zmienZdjecie" value="Zmień zdjęcie">
-                    </form> 
                     <form class="menu" method="post">
                          <input id="usun" type="submit" name="usunGo" value="Usuń konto" onClick="confirm('Czy na pewno chcesz usunąć konto?')">
                     </form> 

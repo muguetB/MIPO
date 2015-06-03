@@ -32,10 +32,29 @@ public function close(){
     public function filldiv() {   
         $login = $_SESSION['login']; 
         $loopResult = '';
-        $wynik = mysql_query("SELECT idItem,name,price,quantity,priority FROM items
+        if(isset($_POST['sortuj'])){
+           $wynik = mysql_query("SELECT idItem,name,price,quantity,priority FROM items
          WHERE idList=(SELECT idList FROM lists WHERE dateList=(SELECT max(dateList) FROM lists) AND idList=(SELECT max(idList) FROM lists)
-          AND idUser=(SELECT idUser FROM users WHERE login='$login') )")
+          AND idUser=(SELECT idUser FROM users WHERE login='$login') ) ORDER BY priority DESC")
                 or die('Błąd zapytania');
+        }
+else{
+      /*  $wynik = mysql_query("SELECT idItem,name,price,quantity,priority FROM items
+         WHERE idList=(SELECT idList FROM lists WHERE dateList=(SELECT max(dateList) FROM lists) AND idList=(SELECT max(idList) FROM lists)
+          AND idUser=(SELECT idUser FROM users WHERE login='$login') or idList IN
+        (SELECT idList FROM grouplists WHERE idGroup IN (SELECT idGroup FROM groupmembers WHERE userLogin='$login')) )") 
+                or die(mysql_error());
+      */
+      $wynik = mysql_query("SELECT idItem,name,price,quantity,priority FROM items
+         WHERE idList=(SELECT idList FROM lists WHERE dateList=(SELECT max(dateList) FROM lists) AND idList=(SELECT max(idList) FROM lists)
+          AND idUser=(SELECT idUser FROM users WHERE login='$login'))") or die("nieeee");
+
+  /*    if(mysql_num_rows($wynik)==0){
+          $wynik=mysql_query("SELECT idItem,name,price,quantity,priority FROM items 
+            WHERE idList IN (SELECT idList FROM grouplists WHERE idGroup IN (SELECT idGroup FROM groupmembers WHERE userLogin='$login'))") or die("hahah");
+       }
+*/
+      }
 
         if (mysql_num_rows($wynik) > 0) {
             echo '<table id="table">';
@@ -90,7 +109,7 @@ public function close(){
   //  $r = mysql_fetch_array($wynik);
             echo '
             <input class="inputs" type="text" placeholder="nazwa" name="nazwa" />
-            <input class="inputs" type="text" required=required placeholder="ilosc" name="ilosc" />
+            <input class="inputs" type="text" placeholder="ilosc" name="ilosc" />
             <input class="inputs" type="text" placeholder="cena" name="cena" />
             <p class="inputs">Priorytet</p>
            <input type="radio" name="priorytet" value="tak" checked/>Tak<input type="radio" name="priorytet" />Nie
@@ -100,12 +119,12 @@ public function close(){
 
    public function usun(){
         if(isset($_POST['usunTo'])){
-          echo 'hej2';
               if(isset($_POST['idUsuwanego'])){
                 $idItem = $_POST['idUsuwanego'];
-                $sqlUpdate = "DELETE FROM items WHERE idItem='$idItem'"; 
-                if (mysql_query($sqlUpdate)) {
-                   echo '<meta http-equiv="refresh" content="1" />';
+                
+                if (mysql_query("DELETE FROM items WHERE idItem='$idItem'")) {
+                   header("Location:glowna.php");
+                   //echo '<meta http-equiv="refresh" content="1" />';
                } 
                else {
                    echo "Error updating record: " . $conn->error;
@@ -164,29 +183,28 @@ public function wyswietlGrupy(){
         }
 
     if(isset($_POST['share'])){
-         $aDoor = $_POST['groupName'];
-    if(empty($aDoor)){
-        //echo("You didn't select any buildings.");
-    }     
-    else{
-    $N = count($aDoor);
+      $aDoor = $_POST['groupName'];
+           
+   // $N = count($aDoor);
+   // echo $N;
     //echo("You selected $N door(s): ");
-        for($i=0; $i < $N; $i++)
+        foreach ($aDoor as $grupy)
         {
-      //echo($aDoor[$i] . " ");
-        $nazwa = $aDoor[$i];
-     
-        $sql2 = @mysql_query("INSERT INTO grouplists SET idGroup=(SELECT idGroup FROM groups WHERE groupName='$nazwa'), 
-            idList=(SELECT idList FROM lists WHERE dateList=(SELECT max(dateList) FROM lists) AND idList=(SELECT max(idList) FROM lists)) ");
-        if($sql2){
-           echo '<meta http-equiv="refresh" content="1" />';
-        }
-        }
-    }
+     // echo($aDoor[$i] . " ");
+        $nazwa = $grupy;
+        echo $nazwa;
+
+
+       $sql2 = mysql_query("INSERT INTO grouplists SET idGroup=(SELECT idGroup FROM groups WHERE groupName='$nazwa'), 
+            idList=(SELECT idList FROM lists WHERE dateList=(SELECT max(dateList) FROM lists) AND idList=(SELECT max(idList) FROM lists)
+             AND idUser=(SELECT idUser FROM users WHERE login='$login') )") or die(mysql_error());
+       
+      }        
+    
 
        
     }
-    self::close();
+    //self::close();
     }
 }
 ?>

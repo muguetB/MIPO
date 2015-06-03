@@ -4,35 +4,36 @@ ul{list-style-type:none;}
 
 /* HEADER PANEL */
 img.center{display: block; margin-left: auto; margin-right: auto;}
-
+#lub_img{display: block; margin-left: auto; margin-right: auto; margin-top: 20%; width:240px; height:38px;}
 
 /* BODY PANEL */
 #bodyPan{width:778px; position:relative; margin:auto; padding:0;}
 #leftPan{width:239px; position:absolute; top:0px; left:8px; margin:0; padding:0px;}
 #leftmemberPan{width:237px; height:240px; position:relative; margin:0, auto; padding:0; border:2px solid #696969; background:#fff; color:#000;}
 #leftmemberPan h2{height:48px; display:block; position:relative; margin-left:auto; margin-right:auto;padding:0 35px 0 35px;  font:16px/48px  Comic Sans MS,Georgia,"Times New Roman", Times, serif; text-transform:uppercase;}
-#leftPan form{width:220px; height:108px; background:#EBE9D7; padding:0; margin:0 0 0 8px; color:#333227;}
-#leftPan form label{width:72px; display:block; float:left; padding:14px 15px 0 16px; }
-
-
-
-#bodyPan2{width:350px; position:relative; margin-left:auto; margin-right:auto; padding:0;}
-#leftPan2{width:350px; position:relative; top:0px;  margin:0; padding:0px;}
-#leftmemberPan2{width:350px; height:300px; position:relative; margin-left:auto; margin-right:auto; padding:0; border:2px solid #696969; background:#fff; color:#000;}
-#leftmemberPan2 h2{height:55px; display:block; position:relative; margin-left:auto; margin-right:auto; margin-top:5%; text-align: center;  font:22px  Comic Sans MS,Georgia,"Times New Roman", Times, serif; text-transform:uppercase;}
-#leftPan2 form{width:240px; height:140px; background:#EBE9D7; padding:0; margin-left:auto; margin-right:auto; color:#333227;}
-#leftPan2 form label{width:72px; display:block; float:left; padding:20px 15px 0 16px; }
-.logowanie_input{float:left; display:block; width:101px; height:16px; margin:20px 0 9px 0}
+#leftPan form{width:220px; height:100px; background:#EBE9D7; padding:0; margin:0 0 0 8px; color:#333227;}
+#leftPan form label{width:72px; display:block; float:left; padding:5px 15px 0 16px; }
+.logowanie_input{float:left; display:block; width:101px; height:16px; margin:14px 0 9px 0}
 #zaloguj_btn{
-    float:left; display:block; width:170px; height:30px; margin-left: 10%; margin-top:25%; background-color:#5EA000; color:white
+    float:left; display:block; width:170px; height:30px; margin-left: 10%; margin-top:2%; background-color:#5EA000; color:white; padding-top: 0px;
 }
 
 #leftPan ul{ display:block; float:right; width:150px; height:327px;}
 #leftPan ul li a{text-decoration:underline; color:#3D3C2C; background:#FCFAE6;}
 #leftPan ul li a:hover{text-decoration:none;}
 
-.linki{float:left; color:cornflowerblue; font-size:12px; margin-top:10px; margin-left:5px}
 
+
+.linki{float:left; color:cornflowerblue; font-size:12px; margin-top:4px; margin-left:5px;}
+
+/*JOIN US PANEL*/
+#joinUs{width:237px; height:240px; display:block; position:relative; margin-left:500px;  padding:0; border:2px solid #696969; background:#fff; color:#000;}
+#joinUs h2{height:48px; display:block; position:relative; padding:0 45px 0 45px;  font:16px/48px  Comic Sans MS,Georgia,"Times New Roman", Times, serif; text-transform:uppercase;}
+#facebook_btn{display:block; width:170px; height:30px; margin-right:auto; margin-left:auto; margin-top:10px; background-image:url(images/zalogujFacebook.png);}
+#google_btn{display:block; width:170px; height:30px; margin-right:auto; margin-left:auto; margin-top:10px; background-image:url(images/zalogujGoogle.png);}
+#lub{display:block; margin-right:auto; margin-left:auto; margin-top: 10px}
+#nowe_konto_btn{display:block; width:170px; height:30px; margin-left:auto; margin-right:auto; margin-top:10px; background-color:#5EA000; color:white}
+#joinUs p{text-align: center; font-style:bold; display:block; top:5%; font-size:15px }
 
 /*GET IT ON PANEL*/
 #google_play_btn{display:block; width:170px; height:35px; margin-right:auto; margin-left:auto; margin-top:20%; background-image:url(images/getit.jpg);}
@@ -75,14 +76,14 @@ img.center{display: block; margin-left: auto; margin-right: auto;}
 
 
 /*STRONA ZAPOMNIALEM HASLA*/
-#resetujPanel{width:550px; height:265px; display:block;  position:relative; margin-left:auto; margin-right:auto;   padding:0; border:2px solid #696969; background:#fff; color:#000;}
+#resetujPanel{width:550px; height:285px; display:block;  position:relative; margin-left:auto; margin-right:auto;   padding:0; border:2px solid #696969; background:#fff; color:#000;}
 #resetujPanel h2{display:block; position:relative; text-align: center;   top:5%; font:20px Comic Sans MS,Georgia, Times, serif; text-transform:uppercase;}
 #resetujPanel label{width:100px; position:relative; display:block; float:left; margin-top:5%; margin-left: 15% }
 #input_mail_resetowanie{float:left; display:block; width:200px; height:16px;  margin-top:5%; margin-left: 0%;}
 #input_login_resetowanie{float:left; display:block; width:200px; height:16px;  margin-top:5%; margin-left: 0% }
-#resetuj_haslo_btn{float:left; display:block; width:190px; height:30px; margin-left:33%; margin-top:2%; background-color:#5EA000; color:white}
-#powroty3{display:block; margin-top:9%;}
-#powroty3 p{text-align: center; margin-top:5%;}
+#resetuj_haslo_btn{float:left; display:block; width:190px; height:30px; margin-left:33%; margin-top:5%; background-color:#5EA000; color:white}
+#powroty3{display:block; margin-top:17%;}
+#powroty3 p{text-align: center; margin-top:-5%;}
 #powroty3 a{display:block; margin-left:38%; margin-right:auto;}
-#blad {color: red;}
-#komunikat{left:0px; top:0px; color:red; padding-top: 20%; padding-left:33%;} 
+#komunikat{left:0px; top:0px; color:red; padding-top: 6%; padding-left:33%;} 
+#komunikat2{left:0px; top:0px; color:red; padding-top: 20%; padding-left:0%;} 

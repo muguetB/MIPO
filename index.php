@@ -11,27 +11,36 @@
       <img src = "images/logo.png" height = "400"  alt = "logo" class="center"/>
 </div>
     
-<div id="bodyPan2">
-  <div id="leftPan2">
-    <div id="leftmemberPan2">
+<div id="bodyPan">
+  <div id="leftPan">
+    <div id="leftmemberPan">
       <h2>Masz już konto?</h2>
       <form id="login" method="post">
         <label>Login</label>
-        <input class="logowanie_input" type="text" name="login" />
+        <input type="text" name="login" />
           <label>Hasło</label>
-        <input class="logowanie_input" type="password" name="password" />
+        <input class="password" type="password" name="password" />
           <br/>
-      <input id="zaloguj_btn" type="submit"  value="Zaloguj" name="wyslij"/>
-      </form>
-      <p class="linki"><a href="zapomnialemHasla.php">Zapomniałem hasła</a></p>
-    <?php
+                 <?php
     include('zbior.php');
     $zbior = new Zbior();
     $zbior -> zaloguj();
   ?>
-    </div> 
-
+      <input id="zaloguj_btn" type="submit"  value="Zaloguj" name="wyslij"/>
+      </form>
+      <p class="linki"> <a href="zapomnialemHasla.php">Zapomniałem hasła</a></p>
+    </div>
   </div>
+    
+    <div id="joinUs">
+      <form action="rejestracja.php" method="post">
+      <h2>Dołącz do nas!</h2>
+      <p > Robienie zakupów jeszcze nigdy nie było tak <b>PROSTE!</b> </br>
+         Dołącz i sprawdź</p>
+           <input id="nowe_konto_btn" type="submit" value="Utwórz nowe konto"/>
+       </form>
+  </div>
+  
 </div>
 <footer id="footerPan">
     <p>Copyright © 2015 MIPO. © MIPO. All right reserved</p>

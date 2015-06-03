@@ -69,6 +69,22 @@ $(document).ready(function() {
 <script>
 $(document).ready(function() {
     $(function() {
+        $("#usunListe").dialog({
+            autoOpen: false
+        });
+        $("#openerUsuwanie").on("click", function() {
+            $("#usunListe").dialog("open");
+        });
+    });
+          $("#submit").click(function(e) {
+                alert("Usunieto!");
+            });    
+        });
+</script> 
+
+<script>
+$(document).ready(function() {
+    $(function() {
         $("#grupy").dialog({
             autoOpen: false
         });
@@ -155,7 +171,7 @@ function closeDialog() {
         <div class="main">
             <div id="dialog" title="Nowa lista">
                 <form action="#" method="post">
-                    <input class="grupa_class" id="nazwa_listy" placeholder="Nazwa listy" name="nameList" type="text" required>
+                    <input id="nowaListaDialog" id="nazwa_listy" placeholder="Nazwa listy" name="nameList" type="text" required>
                     <button id="button" type="submit" name="dodajListe">Dodaj</button>
                 </form>
             </div>
@@ -164,6 +180,14 @@ function closeDialog() {
                 <form action="#" method="post">
                     <input class="inputs" id="zmianaNazwe" name="nowaNazwaListy" placeholder="Nazwa listy" type="text" required>
                     <button id="button" type="submit" name="zapiszNazwe">Zmien</button>
+                </form>
+            </div>
+
+             <div id="usunListe" title="Usuwanie listy">
+                <form action="#" method="post">
+                    <p>Czy na pewno usunąć listę?</p>
+                    <button id="button" type="submit" name="usunTak">Tak</button>
+                    <button id="button" type="submit" name="usunNie">Nie</button>
                 </form>
             </div>
 
@@ -191,10 +215,10 @@ function closeDialog() {
             <div id="dodawanieProduktu" title="Dodaj produkt">
                 <form name="dodajProdukt" id="dodajProdukt" action="#" method="post">
                     <input class="inputs" type="text" placeholder="nazwa" name="nazwa" />
-                    <input class="inputs" type="text" required=required placeholder="ilosc" name="ilosc"/>
+                    <input class="inputs" type="text" placeholder="ilosc" name="ilosc"/>
                     <input class="inputs" type="text" placeholder="cena" name="cena"/>
                     <p class="inputs">Priorytet</p>
-                    <input type="radio" name="priorytet" value="tak" checked>Tak<input type="radio" name="priorytet" value="nie">Nie
+                    <input class="radioButton" type="radio" name="priorytet" value="tak" checked>Tak<input class="radioButton" type="radio" name="priorytet" value="nie">Nie
                     <input id="notatka" type="text" placeholder="notatka" name="notatka"/>
                     <button id="button" type="submit" name="dodaj">Dodaj</button>
                     <button id="zakoncz" type="submit" name="zakoncz">Zakończ</button>
@@ -240,9 +264,10 @@ function closeDialog() {
                                 <h2><center>Zmień nazwę</center></h2>
                                 <a id="openerZmiana" href="#"></a> </div>
                                  
-                                <form class="menu" method="post">
-                                    <input id="usun" type="submit" name="usunListe" value="Usuń listę" onClick="confirm('Czy na pewno usunąć listę?')">
-                                </form>    
+                                 <div id="usun">
+                                <h2><center>Usuń listę</center></h2>
+                                <a id="openerUsuwanie" href="#"></a> </div>
+  
                                 <form class="menu" method="post">
                                     <input id="sortuj" type="submit" name="sortuj" value="Sortuj">
                                 </form> 

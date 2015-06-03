@@ -59,7 +59,6 @@ $("#submit").click(function(e) {
     alert("Zapisano zmiany!");
 });
 });
-
 </script> 
 
 <script>
@@ -83,10 +82,11 @@ var loadFile = function(event) {
         <div id="dialog2" title="Edytuj">
             <form id="formEdycja" action="#" method="post">
              <input name = "idListy" id="idListy" type="hidden" />
-             <input id="new_nazwa_grupy" placeholder="Nowa nazwa listy" name="nowaNazwa" type="text">
-             <input class="buttons" id="usun_btn" type="submit" name="zapisz" value="Zapisz zmiany"/> 
-             <input class="buttons" id="usun_btn" type="submit" name="usunTo" value="Usun"/> 
-             <input class="buttons" id="usun_btn" type="submit" name="edytujProdukty" value="Edytuj listę" onClick="gotoGlowna()"/>
+             <input id="new_nazwa_listy" placeholder="Nowa nazwa listy" name="nowaNazwa" type="text">
+             <input class="buttonsListy" id="usun_btn" type="submit" name="zapisz" value="Zapisz zmiany"/> 
+             <input class="buttonsListy" id="usun_btn" type="submit" name="usunTo" value="Usun"/> 
+             <input class="buttonsListy" id="usun_btn" type="submit" name="edytujProdukty" value="Wyświetl listę" onClick="gotoGlowna()"/>
+             <input class="buttonsListy" id="usun_btn" type="submit" name="share" value="Podziel się listą"/>
              </form>
         </div>
 
@@ -95,7 +95,7 @@ var loadFile = function(event) {
             window.location="glowna.php"
         }
         </script>
- 
+
         <div id="topPan"><a href="#"><img src="images/logo.gif" title="Green Solutions" alt="Green Solutions" /></a>
             <div id="topPanMenu">
                 <img src="images/photo.gif"/>
@@ -125,28 +125,16 @@ var loadFile = function(event) {
                     </div>
                     <div id="rightPan">
                         <div id="rightbodyPan">
-                           <?php
+                        <?php
+                           require("Lista.php");
+                           $lista = new Wyswietlanie();
+                           $lista -> filldiv();
                            require("pobieranieListy.php");
                            $j = new Lista();
-                           $j->filldiv();
                            $j->usunListe();
                            $j->edytujNazwe();
                            $j->zmianaListy();
                            ?>
-                           <div class="sum">
-                            <ol>
-                                <li><a href="#">PODZIEL SIĘ LISTĄ</a>
-                                    <ul>
-                                        <li><a href="#" name="info"> <img src="images/icon3.gif"/>Dom</a></li>
-                                        <li><a href="#" name="info"> <img src="images/icon3.gif"/>Biuro</a></li>
-                                        <li><a href="#"> <img src="images/icon4.gif"/>Gosia L</a></li>
-                                        <li><a href="#"> <img src="images/icon4.gif"/>Ewelina B</a></li>
-                                        <li><a href="#"> <img src="images/icon4.gif"/>Aleksander T</a></li>
-                                    </ul>
-                                </li>
-                            </ol>
-
-                        </div>
                     </div>
 
                 </div>

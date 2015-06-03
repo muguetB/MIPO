@@ -27,15 +27,24 @@ public function close(){
 }
 
 public function wyswietlNazwe(){
-        $nazwaListy = @mysql_query("SELECT nameList FROM lists WHERE dateList=(SELECT max(dateList) FROM lists) AND idList=(SELECT max(idList) FROM lists)") or die("nie udało się :( "); //WHERE dateList=(SELECT max(dateList) FROM lists) AND idList=(SELECT max(idList) FROM lists)");
+        $login = $_SESSION['login'];
+        $nazwaListy = @mysql_query("SELECT nameList FROM lists WHERE dateList=(SELECT max(dateList) FROM lists) AND
+        idList=(SELECT max(idList) FROM lists) AND 
+        idUser=(SELECT idUser FROM users WHERE login='$login') or idList IN
+        (SELECT idList FROM grouplists WHERE idGroup IN (SELECT idGroup FROM groupmembers WHERE userLogin='$login'))")
+        
+
+        or die("nie udało się :( "); 
         $r = mysql_fetch_assoc($nazwaListy);
         echo '<h2><center><b>'.$r['nameList'].'</b></center></h2>';
 }
 
 public function zmienNazwe(){
     if (isset($_POST['zapiszNazwe'])) {
+      $login = $_SESSION['login'];
       $nameList = $_POST['nowaNazwaListy'];
-      $sql = mysql_query("UPDATE lists SET nameList='$nameList' WHERE dateList=(SELECT max(dateList) FROM lists) AND idList=(SELECT max(idList) FROM lists)") or die("Blad");
+      $sql = mysql_query("UPDATE lists SET nameList='$nameList' WHERE dateList=(SELECT max(dateList) FROM (SELECT * FROM lists) AS sth) AND idList=(SELECT max(idList) FROM (SELECT * FROM lists) AS sth) AND
+         idUser=(SELECT idUser FROM users WHERE login='$login')") or die(mysql_error());
       if($sql){
         echo '<meta http-equiv="refresh" content="1" />';
       }
@@ -45,11 +54,10 @@ public function zmienNazwe(){
 public function dodajListe(){
     if (isset($_POST['dodajListe'])) {
         $login = $_SESSION['login'];
-        echo $login;
         $name = $_POST['nameList'];
         $data=date(DATE_ATOM);
         $id = mysql_query("SELECT idUser FROM users WHERE login='$login'");
-        echo $id;
+
         $sql = mysql_query("INSERT INTO lists SET nameList='$name',dateList='$data', idUser=(SELECT idUser FROM users WHERE login='$login')");   
         if($sql){
         echo '<meta http-equiv="refresh" content="1" />';
@@ -60,16 +68,21 @@ public function dodajListe(){
 
     public function dodajProdukt(){
         if (isset($_POST['dodaj'])) {
+        $login = $_SESSION['login'];
         $name = $_POST['nazwa'];
         $price = $_POST['cena'];
         $quantity = $_POST['ilosc'];
         $note = $_POST['notatka'];
         $priority = $_POST['priorytet'];
-
+        $data=date(DATE_ATOM);
+        $sqlLista = mysql_query("SELECT idList FROM lists WHERE idUser=(SELECT idUser FROM users WHERE login='$login')");
+        if(mysql_num_rows($sqlLista)<1){
+           mysql_query("INSERT INTO lists SET nameList='LISTA',dateList='$data', idUser=(SELECT idUser FROM users WHERE login='$login')"); 
+        }
         // dodajemy rekord do bazy 
-        $sql = @mysql_query("INSERT INTO items SET name='$name', price='$price',quantity='$quantity',note='$note',
-         priority='$priority', idList=(SELECT idList FROM lists WHERE dateList=(SELECT max(dateList) FROM lists) AND idList=(SELECT max(idList) FROM lists)) ");
-        var_dump($sql);
+        $sql = @mysql_query("INSERT INTO items SET name='$name', price='$price',quantity='$quantity',note='$note', priority='$priority', 
+          idList=(SELECT idList FROM lists WHERE dateList=(SELECT max(dateList) FROM lists) AND idList=(SELECT max(idList) FROM lists) AND idUser=(SELECT idUser FROM users WHERE login='$login')) ");
+       // var_dump($sql);
         if($sql){
         echo '<meta http-equiv="refresh" content="1" />';
       }
@@ -81,17 +94,15 @@ public function dodajListe(){
     public function sortuj(){
        if (isset($_POST['sortuj'])) {
         $login = $_SESSION['login'];
-        $ins = mysql_query("SELECT * FROM items  ORDER BY priority") or die("hha");
-        if($ins){
-        echo '<meta http-equiv="refresh" content="1" />';
-      }
+        $ins = mysql_query("SELECT * FROM items  ORDER BY priority DESC") or die(mysql_error());
+     
         
         self::close();
       }
     } 
 
 public function usun(){
-   if (isset($_POST['usunListe'])) {
+   if (isset($_POST['usunTak'])) {
     $login = $_SESSION['login'];
     $ins = @mysql_query("DELETE FROM items WHERE 
           idList=(SELECT idList FROM lists WHERE dateList=(SELECT max(dateList) FROM lists)
@@ -104,7 +115,6 @@ public function usun(){
         echo '<meta http-equiv="refresh" content="1" />';
       }
     
-    self::close();
     }
   }
 
